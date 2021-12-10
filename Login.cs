@@ -26,7 +26,7 @@ namespace WindowsFormsApp1
         private void btn_login_Click(object sender, EventArgs e)
         {
             SqlConnection conn;
-            conn = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ConnectionString);//new一个connection对象，并获取App.config文件中的con的connectionString的值作为这个对象的构造函数的参数
+            conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString);//new一个connection对象，并获取App.config文件中的con的connectionString的值作为这个对象的构造函数的参数
             
             string sql = "select 用户名,密码 from userdb where 用户名='"+txb_username.Text+"'and 密码='"+txb_password.Text+"'";//获取textBox中的字符串并组成查询语句
 

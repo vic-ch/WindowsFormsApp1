@@ -51,8 +51,8 @@ namespace WindowsFormsApp1
             #region 
             
                 SqlConnection conn;
-                conn = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ConnectionString);
-
+                conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString);
+         
                 string sql ="SELECT 密码 FROM USERDB WHERE 用户名='"+CurrentUser.name+"'";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 conn.Open();

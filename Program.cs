@@ -18,9 +18,9 @@ namespace WindowsFormsApp1
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            //Application.Run(new Login());
             //Application.Run(new Exec());
-
+            Application.Run(new Link2DB());
             Console.WriteLine("Hello,World!");
 
 

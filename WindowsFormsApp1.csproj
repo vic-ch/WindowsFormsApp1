@@ -68,6 +68,12 @@
     <Compile Include="AddUser.Designer.cs">
       <DependentUpon>AddUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Link2DB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Link2DB.Designer.cs">
+      <DependentUpon>Link2DB.cs</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <Compile Include="Exec.cs">
       <SubType>Form</SubType>
@@ -91,9 +97,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddUser.resx">
       <DependentUpon>AddUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Exec.resx">
       <DependentUpon>Exec.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Link2DB.resx">
+      <DependentUpon>Link2DB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

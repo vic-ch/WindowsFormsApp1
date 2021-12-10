@@ -10,6 +10,13 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 
+/**
+ * 2021-12-09
+ *实现了修改密码功能
+ *实现了添加用户功能
+ *
+ **/
+
 
 namespace WindowsFormsApp1
 {
@@ -27,7 +34,7 @@ namespace WindowsFormsApp1
                 #region 
 
                 SqlConnection conn;
-                conn = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ConnectionString);
+                conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString);
 
                 string sql = "SELECT 用户名 FROM USERDB WHERE 用户名='" + textBox1.Text + "'";
                 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -52,7 +59,7 @@ namespace WindowsFormsApp1
                                 this.Close();
                             }
                         }
-                        //MessageBox.Show("OK!");
+                       
                         else
                         {
                             MessageBox.Show("添加失败！");
@@ -64,7 +71,12 @@ namespace WindowsFormsApp1
                 {
                     MessageBox.Show("已存在用户名为“"+textBox1.Text+"”的用户");
                 }
+
                 #endregion
+            }
+            else
+            {
+                MessageBox.Show("用户名或密码不能为空！");
             }
 
         }
