@@ -1,7 +1,6 @@
 C:\Users\z\source\repos\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
 C:\Users\z\source\repos\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
 C:\Users\z\source\repos\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
-C:\Users\z\source\repos\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.SuggestedBindingRedirects.cache
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.AddUser.resources
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Exec.resources
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Link2DB.resources
@@ -12,3 +11,4 @@ C:\Users\z\source\repos\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.Gener
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\z\source\repos\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
