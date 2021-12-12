@@ -17,10 +17,14 @@ namespace WindowsFormsApp1
         {
             
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Login());
+            //
+             link2db.constr = "default";
             //Application.Run(new Exec());
-            Application.Run(new Link2DB());
+            //
+            //Application.Run(new Link2DB());
+            Application.Run(new AddGoods());
             Console.WriteLine("Hello,World!");
 
 

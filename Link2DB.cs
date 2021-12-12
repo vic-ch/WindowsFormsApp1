@@ -37,11 +37,11 @@ namespace WindowsFormsApp1
             //public string password;
         }
 
-        link l;
+        link l; //实例化到全局。
        
 
         //窗口加载时
-        //读取default connectionString 并获取
+        //读取default connectionString 并获取默认信息 传递到文本框中。
         protected void get_default_settings()
         {
             #region 获取server
@@ -77,7 +77,7 @@ namespace WindowsFormsApp1
 
         //用户自定义登录方式
         //连接字符串
-        private void join_str()
+        private void Join_str()
         {
             //由于添加connectionString名称不能重复，方便起见，使用当前日期时间作为字符串名称。
             //！每一次使用非默认方式链接数据库，都将被记录经app.config中作为connectionString字符串
@@ -163,19 +163,31 @@ namespace WindowsFormsApp1
         {
             if (checkBox1.Checked)
             {
+                //选中了"使用默认链接"
+                //则使用默认字符串
                 link2db.constr = "default";
-                testLink();
+                if (TestLink())
+                {
+                    Login login = new Login();
+                    this.Hide();
+                    login.Show();
+                }
             }
             else
             {
-                join_str();
+                Join_str();
                 link2db.constr = l.conStrName;
-                testLink();
+                if (TestLink())
+                {
+                    Login login = new Login();
+                    this.Hide();
+                    login.Show();
+                }
             }
             
         }
 
-        private void testLink()
+        private bool TestLink()
         {
             try
             {
@@ -186,26 +198,27 @@ namespace WindowsFormsApp1
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
-                {
+                {      
                     MessageBox.Show("数据库链接成功！", reader.GetString(0) );
-                    Login login = new Login();
-                    this.Hide();
-                    login.Show();
+                    conn.Close();
+                    return true;
                 }
                 else
                 {
+                    conn.Close();
                     MessageBox.Show("数据库链接失败！");
+                    return false;
                 }
-                conn.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return false;
             }
         }
     }
     public static class link2db
     {
-        public static string constr { set; get; }
+        public static string constr { set; get; }//封装一个 字符串 conStr 作为连接字符串的 name。
     }
 }

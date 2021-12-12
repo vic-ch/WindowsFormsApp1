@@ -42,7 +42,10 @@ namespace WindowsFormsApp1
                 Console.WriteLine(CurrentUser.name);
                 CurrentUser.status = 1;
  
+                //进入exec界面
                 this.Hide();
+                Exec exec = new Exec();
+                exec.Show();
             }
             else                    //没有返回一行，表示在数据库中没有找到输入的账号密码
             {
@@ -50,13 +53,13 @@ namespace WindowsFormsApp1
             }
             conn.Close();
 
-            Exec exec = new Exec();
-            exec.Show();
+           
         }
 
         private void btn_exit_Click(object sender, EventArgs e)
         {
             this.Close();
+            Application.Exit();
         }
       
     }

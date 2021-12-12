@@ -18,6 +18,12 @@ namespace WindowsFormsApp1
         }
 
 
+        //重载窗口关闭事件。
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -37,30 +43,25 @@ namespace WindowsFormsApp1
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            set_all_small_btn_invisible();
+            Set_all_small_btn_invisible();
             button6.Visible = true;
         }
+
+        //系统管理
         private void button6_Click(object sender, EventArgs e)
         {
-            set_all_small_btn_invisible();
+            Set_all_small_btn_invisible();
             button6.Visible = false;
             button7.Visible = true;
             button8.Visible = true;
             button7.Focus();
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        //隐藏所有小button的方法
+        private void Set_all_small_btn_invisible()
         {
-            //MessageBox.Show("HELLO!");
-            ModifyPassword modifyPassword = new ModifyPassword();
-            modifyPassword.Show();
-        }
-
-
-        private void set_all_small_btn_invisible()
-        {
-            button7.Visible=false;
-            button8.Visible=false;
+            button7.Visible = false;
+            button8.Visible = false;
             //button9.Visible=false;
             //button10.Visible=false;
             //button11.Visible=false;
@@ -70,6 +71,17 @@ namespace WindowsFormsApp1
             //button15.Visible=false;
         }
 
+
+        //修改密码
+        private void button7_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show("HELLO!");
+            ModifyPassword modifyPassword = new ModifyPassword();
+            modifyPassword.Show();
+        }
+
+        
+        //添加成员
         private void button8_Click(object sender, EventArgs e)
         {
             AddUser addUser = new AddUser();

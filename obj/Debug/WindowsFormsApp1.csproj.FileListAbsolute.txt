@@ -12,3 +12,4 @@ C:\Users\z\source\repos\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreC
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
+C:\Users\z\source\repos\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.SuggestedBindingRedirects.cache
