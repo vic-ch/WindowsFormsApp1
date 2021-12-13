@@ -44,44 +44,61 @@ namespace WindowsFormsApp1
                 {
                     #region 
 
-                    SqlConnection conn;
-                    conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString);
-
-                    string sql = "SELECT 用户名 FROM USERDB WHERE 用户名='" + textBox1.Text + "'";
-                    SqlCommand cmd = new SqlCommand(sql, conn);
-                    conn.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read() == false)
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                     {
-                        reader.Close();
-                        string sql1 = "INSERT INTO USERDB (用户名, 密码)VALUES('" + textBox1.Text + "','" + textBox2.Text + "')";
-                        string sql2 = "SELECT 用户名 FROM USERDB WHERE 用户名='" + textBox1.Text + "'";
-
-                        SqlCommand cmd1 = new SqlCommand(sql1, conn);
-                        if (cmd1.ExecuteNonQuery() == 1)
+                        conn.Open();
+                        string sql = "SELECT 用户名 FROM USERDB WHERE 用户名='" + textBox1.Text + "'";
+                        using (SqlCommand cmd = new SqlCommand(sql, conn))
                         {
-                            SqlCommand cmd2 = new SqlCommand(sql2, conn);
-                            SqlDataReader reader2 = cmd2.ExecuteReader();
-                            if (reader2.Read())
+                            using (SqlDataReader reader = cmd.ExecuteReader())
                             {
-                                if (textBox1.Text == reader2.GetString(0))
+                                if (reader.Read())
                                 {
-                                    MessageBox.Show("添加成功！");
-                                    this.Close();
+                                    MessageBox.Show("已存在用户名为“" + textBox1.Text + "”的用户");
+                                }
+                                else
+                                {
+                                    string sql1 = "INSERT INTO USERDB (用户名, 密码)VALUES('" + textBox1.Text + "','" + textBox2.Text + "')";
+                                    string sql2 = "SELECT 用户名 FROM USERDB WHERE 用户名='" + textBox1.Text + "'";
+                                    using (SqlCommand cmd1 = new SqlCommand(sql1, conn))
+                                    {
+                                        if (cmd1.ExecuteNonQuery() == 1)
+                                        {
+                                            using (SqlCommand cmd2 = new SqlCommand(sql2, conn))
+                                            {
+                                                using(SqlDataReader reader2 = cmd2.ExecuteReader())
+                                                {
+                                                    if (reader2.Read())
+                                                    {
+                                                        if (textBox1.Text == reader2.GetString(0))
+                                                        {
+                                                            MessageBox.Show("添加成功！");
+                                                            this.Close();
+                                                        }
+                                                    }
+
+                                                    else
+                                                    {
+                                                        MessageBox.Show("添加失败！");
+                                                    }
+                                                }
+                                            }
+                                           
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("添加失败！");
+                                        }
+                                    }
+                                        
                                 }
                             }
 
-                            else
-                            {
-                                MessageBox.Show("添加失败！");
-                            }
                         }
 
+
                     }
-                    else
-                    {
-                        MessageBox.Show("已存在用户名为“" + textBox1.Text + "”的用户");
-                    }
+
 
                     #endregion 
                 }

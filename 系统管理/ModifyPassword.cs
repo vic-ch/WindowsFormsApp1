@@ -49,55 +49,70 @@ namespace WindowsFormsApp1
             //Console.WriteLine();
 
             #region 
-            
-                SqlConnection conn;
-                conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString);
-         
-                string sql ="SELECT 密码 FROM USERDB WHERE 用户名='"+CurrentUser.name+"'";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                conn.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
             {
-                if (textBox2.Text == reader.GetString(0))
+                conn.Open();
+                string sql = "SELECT 密码 FROM USERDB WHERE 用户名='" + CurrentUser.name + "'";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    reader.Close();
-                    string  sql1 = "UPDATE USERDB SET 密码='" + textBox3.Text + "' WHERE 用户名='" + CurrentUser.name + "'";
-                    string  sql2 = "SELECT 密码 FROM USERDB WHERE 用户名='" + CurrentUser.name + "'";
-                    
-                    SqlCommand cmd1 = new SqlCommand(sql1, conn);
-                    if (cmd1.ExecuteNonQuery() == 1)
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        SqlCommand cmd2 = new SqlCommand(sql2, conn);
-                        SqlDataReader reader2 = cmd2.ExecuteReader();
-                        if (reader2.Read())
+                        if (reader.Read())
                         {
-                            if (textBox3.Text == reader2.GetString(0))
+                            //检查原来的密码是否正确
+                            if (textBox2.Text == reader.GetString(0))
                             {
-                                MessageBox.Show("修改成功！");
+                                string sql1 = "UPDATE USERDB SET 密码='" + textBox3.Text + "' WHERE 用户名='" + CurrentUser.name + "'";
+                                string sql2 = "SELECT 密码 FROM USERDB WHERE 用户名='" + CurrentUser.name + "'";
 
-                                CurrentUser.status = 0;
-                                this.Close();
-                              
-                                
-                                //TODO
-                                //设置修改密码后注销登录状态。
+                                using (SqlCommand cmd1 = new SqlCommand(sql1, conn))
+                                {
+                                    if (cmd1.ExecuteNonQuery() == 1)
+                                    {
+                                        using (SqlCommand cmd2 = new SqlCommand(sql2, conn))
+                                        {
+                                            using (SqlDataReader reader2 = cmd2.ExecuteReader())
+                                            {
+                                                if (reader2.Read())
+                                                {
+                                                    if (textBox3.Text == reader2.GetString(0))
+                                                    {
+                                                        MessageBox.Show("修改成功！");
 
+                                                        CurrentUser.status = 0;
+                                                        this.Close();
+
+
+                                                        //TODO
+                                                        //设置修改密码后注销登录状态。
+                                                    }
+                                                    else
+                                                    {
+                                                        MessageBox.Show("修改失败！");
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("修改失败！");
+                                    }
+                                }
                             }
                             else
                             {
-                                MessageBox.Show("修改失败！");
+                                MessageBox.Show("密码错误！","ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
                             }
-                            reader2.Close();
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("修改失败！");
+                        else
+                        {
+                            MessageBox.Show("请检查当前登录状态", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
-            conn.Close();
 
 
             #endregion

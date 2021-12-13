@@ -22,7 +22,7 @@ namespace WindowsFormsApp1
         private void Link2DB_Load(object sender, EventArgs e)
         {
             get_default_settings();
-            checkBox1.Checked = true;//窗体加载时默认选中使用默认连接
+            checkBox1.Checked = true;//窗体加载时默认 选中 '使用默认连接'
             
         }
 
@@ -37,7 +37,7 @@ namespace WindowsFormsApp1
             //public string password;
         }
 
-        link l; //实例化到全局。
+        private link l; //实例化。
        
 
         //窗口加载时
@@ -88,6 +88,7 @@ namespace WindowsFormsApp1
             string connectionString;
             ConnectionStringSettings setConnStr;
 
+
             if (radioButton2.Checked)
             {
                 //设置连接字符串
@@ -112,7 +113,7 @@ namespace WindowsFormsApp1
                 ConfigurationManager.RefreshSection("connectionStrings");
 
 
-            #region
+            #region 参考方法
             // 
             ////获取Configuration对象
             //Configuration config = System.Configuration.ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
@@ -175,6 +176,8 @@ namespace WindowsFormsApp1
             }
             else
             {
+                //自定义方式连接
+                //连接字符串
                 Join_str();
                 link2db.constr = l.conStrName;
                 if (TestLink())
@@ -191,23 +194,26 @@ namespace WindowsFormsApp1
         {
             try
             {
-                SqlConnection conn;
-                conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString);
-                conn.Open();
-                string sql = "select 'hello world!' as a";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
-                {      
-                    MessageBox.Show("数据库链接成功！", reader.GetString(0) );
-                    conn.Close();
-                    return true;
-                }
-                else
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
-                    conn.Close();
-                    MessageBox.Show("数据库链接失败！");
-                    return false;
+                    conn.Open();
+                    string sql = "select 'hello world!' as a";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                MessageBox.Show("数据库链接成功！", reader.GetString(0));
+                                return true;
+                            }
+                            else
+                            {
+                                MessageBox.Show("数据库链接失败！");
+                                return false;
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -217,8 +223,10 @@ namespace WindowsFormsApp1
             }
         }
     }
+
+    //封装一个 字符串 conStr 作为连接字符串的 name。
     public static class link2db
     {
-        public static string constr { set; get; }//封装一个 字符串 conStr 作为连接字符串的 name。
+        public static string constr { set; get; }
     }
 }
