@@ -1,8 +1,10 @@
 C:\Users\z\source\repos\WindowsFormsApp1\bin\Release\WindowsFormsApp1.exe.config
 C:\Users\z\source\repos\WindowsFormsApp1\bin\Release\WindowsFormsApp1.exe
 C:\Users\z\source\repos\WindowsFormsApp1\bin\Release\WindowsFormsApp1.pdb
-C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.AssemblyReference.cache
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.SuggestedBindingRedirects.cache
+C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.RetreatGoods.resources
+C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.SellGoods.resources
+C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.AddGoods.resources
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.AddUser.resources
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.Exec.resources
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.Link2DB.resources
@@ -13,4 +15,6 @@ C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.Gen
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.CoreCompileInputs.cache
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.exe
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.pdb
-C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.AddGoods.resources
+C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.AssemblyReference.cache
+C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.进货统计.Buycount.resources
+C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.销售统计.Sellcount.resources

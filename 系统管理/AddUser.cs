@@ -60,34 +60,43 @@ namespace WindowsFormsApp1
                                 {
                                     string sql1 = "INSERT INTO USERDB (用户名, 密码)VALUES('" + textBox1.Text + "','" + textBox2.Text + "')";
                                     string sql2 = "SELECT 用户名 FROM USERDB WHERE 用户名='" + textBox1.Text + "'";
-                                    using (SqlCommand cmd1 = new SqlCommand(sql1, conn))
+                                    using (SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                                     {
-                                        if (cmd1.ExecuteNonQuery() == 1)
+                                        conn2.Open();
+
+                                        using (SqlCommand cmd1 = new SqlCommand(sql1, conn2))
                                         {
-                                            using (SqlCommand cmd2 = new SqlCommand(sql2, conn))
+                                            if (cmd1.ExecuteNonQuery() == 1)
                                             {
-                                                using(SqlDataReader reader2 = cmd2.ExecuteReader())
+                                                using (SqlConnection conn3 = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                                                 {
-                                                    if (reader2.Read())
+                                                    conn3.Open();
+                                                    using (SqlCommand cmd2 = new SqlCommand(sql2, conn3))
                                                     {
-                                                        if (textBox1.Text == reader2.GetString(0))
+                                                        using (SqlDataReader reader2 = cmd2.ExecuteReader())
                                                         {
-                                                            MessageBox.Show("添加成功！");
-                                                            this.Close();
+                                                            if (reader2.Read())
+                                                            {
+                                                                if (textBox1.Text == reader2.GetString(0))
+                                                                {
+                                                                    MessageBox.Show("添加成功！");
+                                                                    this.Close();
+                                                                }
+                                                            }
+
+                                                            else
+                                                            {
+                                                                MessageBox.Show("添加失败！");
+                                                            }
                                                         }
                                                     }
-
-                                                    else
-                                                    {
-                                                        MessageBox.Show("添加失败！");
-                                                    }
                                                 }
+
                                             }
-                                           
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show("添加失败！");
+                                            else
+                                            {
+                                                MessageBox.Show("添加失败！");
+                                            }
                                         }
                                     }
                                         

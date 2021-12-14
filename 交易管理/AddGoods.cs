@@ -20,7 +20,6 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
-
         //重载关闭窗口事件，避免误操作关闭。
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
@@ -147,6 +146,7 @@ namespace WindowsFormsApp1
                           "总金额=" + textBox11.Text + "";
 
                         conn.Open();
+
                         using (SqlCommand cmd = new SqlCommand(sql, conn))
                         {
                             using (SqlDataReader reader = cmd.ExecuteReader())
@@ -160,13 +160,17 @@ namespace WindowsFormsApp1
                                     else
                                     {
                                         sql = "INSERT INTO GOODS (商品名,生产厂商,型号,单价,数量,进货年,进货月,进货日,业务员编号,总金额) VALUES ('" + textBox2.Text + "','" + comboBox1.SelectedItem + "','" + textBox4.Text + "'," + textBox5.Text + "," + textBox6.Text + "," + numericUpDown1.Value + "," + numericUpDown2.Value + "," + numericUpDown3.Value + "," + textBox10.Text + "," + textBox11.Text + ")";
-                                        using (SqlCommand cmd2 = new SqlCommand(sql, conn))
+                                        using (SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                                         {
-                                            cmd2.ExecuteNonQuery();
-                                            MessageBox.Show("添加成功！");
-                                            this.Close();
-                                            //一条数据插入成功后，弹出关闭窗口选项。
-                                        }  
+                                            conn2.Open();
+                                            using (SqlCommand cmd2 = new SqlCommand(sql, conn2))
+                                            {
+                                                cmd2.ExecuteNonQuery();
+                                                MessageBox.Show("添加成功！");
+                                                this.Close();
+                                                //一条数据插入成功后，弹出关闭窗口选项。
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -285,40 +289,26 @@ namespace WindowsFormsApp1
                         {
                             cmd.ExecuteNonQuery();
                             sql = "SELECT 厂商名称,法人代表,电话,厂商地址 FROM MANUFACTURER WHERE 厂商名称='" + textBox12.Text + "'";
-                            using (SqlCommand cmd2 = new SqlCommand(sql, conn))
+                            using (SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                             {
-                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                conn2.Open();
+                                using (SqlCommand cmd2 = new SqlCommand(sql, conn2))
                                 {
-                                    while (reader.Read())
+                                    using (SqlDataReader reader = cmd2.ExecuteReader())
                                     {
-                                        MessageBox.Show("添加成功！");
-                                        comboBox1.Items.Clear();
-                                        add_items();
+                                        if (reader.Read())
+                                        {
+                                            MessageBox.Show("添加成功！");
+                                            comboBox1.Items.Clear();
+                                            add_items();
+                                        }
                                     }
                                 }
                             }
                             
                         }
                     }
-                    //SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ToString());
-                    //string sql = "INSERT INTO MANUFACTURER (厂商名称,法人代表,电话,厂商地址)VALUES('" + textBox12.Text + "','" + textBox13.Text + "','" + textBox14.Text + "','" + textBox15.Text + "')";
-                    //conn.Open();
-                    
-                    //SqlCommand cmd = new SqlCommand(sql, conn);
-                    //cmd.ExecuteNonQuery();
-                    //sql= "SELECT 厂商名称,法人代表,电话,厂商地址 FROM MANUFACTURER WHERE 厂商名称='"+textBox12.Text+"'";
-                    //cmd =new SqlCommand(sql, conn);
-                    //SqlDataReader reader = cmd.ExecuteReader();
-                    //if (reader.Read())
-                    //{
-                    //    MessageBox.Show("添加成功！");
-                    //    comboBox1.Items.Clear();
-                    //    //在添加厂商成功后，更新厂商列表
-                    //    add_items();
 
-                    //    reader.Close();
-                    //    conn.Close();
-                    //}
                 }
                 catch (Exception ex)
                 {
@@ -335,6 +325,24 @@ namespace WindowsFormsApp1
             textBox14.Text = "";
             textBox15.Text = "";
             textBox12.Focus();
+        }
+
+
+        //改变单价时自动修改总价
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox6.Text.Length != 0 && textBox5.Text.Length != 0)
+            {
+                textBox11.Text = (int.Parse(textBox5.Text) * int.Parse(textBox6.Text)).ToString();
+            }
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox5.Text.Length != 0 && textBox6.Text.Length != 0)
+            {
+                textBox11.Text = (int.Parse(textBox5.Text) * int.Parse(textBox6.Text)).ToString();
+            }
         }
     }
 }

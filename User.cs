@@ -17,6 +17,11 @@ namespace WindowsFormsApp1
     }
 
 
-   
+    //封装一个 字符串 conStr 作为连接字符串的 name。
+    public static class link2db
+    {
+        public static string constr { set; get; }
+    }
+
 
 }

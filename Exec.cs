@@ -27,45 +27,64 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            Button_control();
+            button1.Visible = false;
+            button9.Visible = true;
+            button10.Visible = true;
+            button11.Visible = true;
+            button12.Visible = true;
+            button9.Focus();
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            Button_control();
+            button2.Visible = false;
 
         }
         private void button3_Click(object sender, EventArgs e)
         {
+            Button_control();
+            button3.Visible = false;
 
         }
         private void button4_Click(object sender, EventArgs e)
         {
+            Button_control();
+            button4.Visible = false;
 
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            Set_all_small_btn_invisible();
-            button6.Visible = true;
+            Button_control();
+            button5.Visible = false;
         }
 
         //系统管理
         private void button6_Click(object sender, EventArgs e)
         {
-            Set_all_small_btn_invisible();
+            Button_control();
             button6.Visible = false;
             button7.Visible = true;
             button8.Visible = true;
             button7.Focus();
         }
 
-        //隐藏所有小button的方法
-        private void Set_all_small_btn_invisible()
+        //点击大按钮时：隐藏所有小button，显示所有大button
+        private void Button_control()
         {
+            button1.Visible = true;
+            button2.Visible = true;
+            button3.Visible = true;
+            button4.Visible = true;
+            button5.Visible = true;
+            button6.Visible = true;
+
             button7.Visible = false;
             button8.Visible = false;
-            //button9.Visible=false;
-            //button10.Visible=false;
-            //button11.Visible=false;
-            //button12.Visible=false;
+            button9.Visible = false;
+            button10.Visible=false;
+            button11.Visible=false;
+            button12.Visible=false;
             //button13.Visible=false;
             //button14.Visible=false;
             //button15.Visible=false;
@@ -86,6 +105,30 @@ namespace WindowsFormsApp1
         {
             AddUser addUser = new AddUser();
             addUser.Show();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            AddGoods addGoods = new AddGoods();
+            addGoods.Show();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            SellGoods sellGoods = new SellGoods();
+            sellGoods.Show();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            RetreatGoods retreatGoods = new RetreatGoods();
+            retreatGoods.Show();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            AddGoods addGoods=new AddGoods();  
+            addGoods.Show();
         }
     }
 }
