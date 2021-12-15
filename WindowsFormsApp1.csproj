@@ -88,6 +88,12 @@
     <Compile Include="交易管理\AddGoods.Designer.cs">
       <DependentUpon>AddGoods.cs</DependentUpon>
     </Compile>
+    <Compile Include="查看数据表\Checkmanufacturer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="查看数据表\Checkmanufacturer.Designer.cs">
+      <DependentUpon>Checkmanufacturer.cs</DependentUpon>
+    </Compile>
     <Compile Include="查看数据表\Checkemployee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +184,9 @@
     <EmbeddedResource Include="交易管理\AddGoods.resx">
       <DependentUpon>AddGoods.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="查看数据表\Checkmanufacturer.resx">
+      <DependentUpon>Checkmanufacturer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="查看数据表\Checkemployee.resx">
       <DependentUpon>Checkemployee.cs</DependentUpon>

@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1.查看数据表
 {
-    partial class Checkemployee
+    partial class Checkmanufacturer
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Checkemployee));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Checkmanufacturer));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,6 +50,8 @@
             this.tsbcancel = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -57,8 +59,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.textBox5);
             this.groupBox1.Controls.Add(this.textBox4);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.textBox2);
@@ -74,7 +78,7 @@
             // textBox3
             // 
             this.textBox3.AcceptsReturn = true;
-            this.textBox3.Location = new System.Drawing.Point(272, 180);
+            this.textBox3.Location = new System.Drawing.Point(272, 145);
             this.textBox3.MaximumSize = new System.Drawing.Size(300, 300);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(129, 21);
@@ -84,16 +88,16 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(174, 237);
+            this.label3.Location = new System.Drawing.Point(174, 202);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 12);
+            this.label3.Size = new System.Drawing.Size(41, 12);
             this.label3.TabIndex = 7;
-            this.label3.Text = "家庭住址：";
+            this.label3.Text = "电话：";
             // 
             // textBox4
             // 
             this.textBox4.AcceptsReturn = true;
-            this.textBox4.Location = new System.Drawing.Point(272, 237);
+            this.textBox4.Location = new System.Drawing.Point(272, 202);
             this.textBox4.MaximumSize = new System.Drawing.Size(300, 300);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(129, 21);
@@ -102,16 +106,16 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(174, 180);
+            this.label4.Location = new System.Drawing.Point(174, 145);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 12);
+            this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 5;
-            this.label4.Text = "电话：";
+            this.label4.Text = "法人代表：";
             // 
             // textBox2
             // 
             this.textBox2.AcceptsReturn = true;
-            this.textBox2.Location = new System.Drawing.Point(272, 114);
+            this.textBox2.Location = new System.Drawing.Point(272, 79);
             this.textBox2.MaximumSize = new System.Drawing.Size(300, 300);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(129, 21);
@@ -120,16 +124,16 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(174, 117);
+            this.label2.Location = new System.Drawing.Point(174, 82);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.Size = new System.Drawing.Size(77, 12);
             this.label2.TabIndex = 3;
-            this.label2.Text = "姓名：";
+            this.label2.Text = "进货商名称：";
             // 
             // textBox1
             // 
             this.textBox1.AcceptsReturn = true;
-            this.textBox1.Location = new System.Drawing.Point(272, 55);
+            this.textBox1.Location = new System.Drawing.Point(272, 20);
             this.textBox1.MaximumSize = new System.Drawing.Size(300, 300);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(129, 21);
@@ -138,11 +142,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(174, 58);
+            this.label1.Location = new System.Drawing.Point(174, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.Size = new System.Drawing.Size(77, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "员工编号：";
+            this.label1.Text = "进货商编号：";
             // 
             // dataGridView1
             // 
@@ -244,7 +248,25 @@
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
             // 
-            // Checkemployee
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(174, 252);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 12);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "地址：";
+            // 
+            // textBox5
+            // 
+            this.textBox5.AcceptsReturn = true;
+            this.textBox5.Location = new System.Drawing.Point(272, 252);
+            this.textBox5.MaximumSize = new System.Drawing.Size(300, 300);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(129, 21);
+            this.textBox5.TabIndex = 8;
+            // 
+            // Checkmanufacturer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -252,8 +274,8 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Checkemployee";
-            this.Text = "查询员工";
+            this.Name = "Checkmanufacturer";
+            this.Text = "查询进货商";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.groupBox1.ResumeLayout(false);
@@ -288,5 +310,7 @@
         private System.Windows.Forms.ToolStripButton tsbcancel;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox5;
     }
 }

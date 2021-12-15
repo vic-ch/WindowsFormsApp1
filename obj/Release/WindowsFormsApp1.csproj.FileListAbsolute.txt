@@ -6,6 +6,7 @@ C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.业绩查�
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.RetreatGoods.resources
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.SellGoods.resources
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.AddGoods.resources
+C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.查看数据表.Checkmanufacturer.resources
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.查看数据表.Checkemployee.resources
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.查看数据表.Checkaddgoods.resources
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.查看数据表.Checkretreat.resources

@@ -14,9 +14,9 @@ using System.Configuration;
 
 namespace WindowsFormsApp1.查看数据表
 {
-    public partial class Checkemployee : Form
+    public partial class Checkmanufacturer : Form
     {
-        public Checkemployee()
+        public Checkmanufacturer()
         {
             InitializeComponent();
         }
@@ -29,6 +29,8 @@ namespace WindowsFormsApp1.查看数据表
             textBox2.Enabled = false;
             textBox3.Enabled = false;
             textBox4.Enabled = false;
+            textBox5.Enabled = false;
+
             tsbsave.Enabled = false;
         }
 
@@ -39,14 +41,13 @@ namespace WindowsFormsApp1.查看数据表
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(Views.Employee, conn))
+                    using (SqlCommand cmd = new SqlCommand(Views.Manufacturer, conn))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             ds.Clear();
-                            
-                            int count = adapter.Fill(ds, "员工表");
-                            dataGridView1.DataSource = ds.Tables["员工表"];
+                            int count = adapter.Fill(ds, "进货商表");
+                            dataGridView1.DataSource = ds.Tables["进货商表"];
 
                         }
                     }
@@ -74,6 +75,7 @@ namespace WindowsFormsApp1.查看数据表
             textBox2.Text = dataGridView1[1, dataGridView1.CurrentCell.RowIndex].Value.ToString();
             textBox3.Text = dataGridView1[2, dataGridView1.CurrentCell.RowIndex].Value.ToString();
             textBox4.Text = dataGridView1[3, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+            textBox5.Text = dataGridView1[4, dataGridView1.CurrentCell.RowIndex].Value.ToString();
         }
 
         private void tsbedit_Click(object sender, EventArgs e)
@@ -82,6 +84,7 @@ namespace WindowsFormsApp1.查看数据表
             textBox2.Enabled = true;
             textBox3.Enabled = true;
             textBox4.Enabled = true;
+            textBox5.Enabled = true;
             tsbsave.Enabled = true;
         }
 
@@ -91,6 +94,7 @@ namespace WindowsFormsApp1.查看数据表
             textBox2.Enabled = false;
             textBox3.Enabled = false;
             textBox4.Enabled = false;
+            textBox5.Enabled = false;
             tsbsave.Enabled=false;
         }
 
@@ -99,14 +103,15 @@ namespace WindowsFormsApp1.查看数据表
             if (textBox1.Text != dataGridView1[0, dataGridView1.CurrentCell.RowIndex].Value.ToString()
                 ||textBox2.Text != dataGridView1[1, dataGridView1.CurrentCell.RowIndex].Value.ToString()
                 ||textBox3.Text != dataGridView1[2, dataGridView1.CurrentCell.RowIndex].Value.ToString()
-                ||textBox4.Text != dataGridView1[3, dataGridView1.CurrentCell.RowIndex].Value.ToString())
+                ||textBox4.Text != dataGridView1[3, dataGridView1.CurrentCell.RowIndex].Value.ToString()
+                ||textBox5.Text != dataGridView1[4, dataGridView1.CurrentCell.RowIndex].Value.ToString())
             {
                 try
                 {
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                     {
                         conn.Open();
-                        string sql = "UPDATE EMPLOYEE SET 员工姓名='"+textBox2.Text.Trim()+"' , 员工电话='"+textBox3.Text.Trim()+"', 员工地址='"+textBox4.Text.Trim()+"' WHERE 员工编号="+textBox1.Text.Trim();
+                        string sql = "UPDATE MANUFACTURER SET 厂商名称='"+textBox2.Text.Trim()+"' ,法人代表 ='"+textBox3.Text.Trim()+"', 电话='"+textBox4.Text.Trim() + "', 厂商地址='" + textBox5.Text.Trim() + "' WHERE 厂商编号="+textBox1.Text.Trim();
                         using (SqlCommand cmd = new SqlCommand(sql, conn))
                         {
                             cmd.ExecuteNonQuery();
@@ -135,7 +140,7 @@ namespace WindowsFormsApp1.查看数据表
                         using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                         {
                             conn.Open();
-                            string sql = "DELETE EMPLOYEE WHERE 员工编号=" + textBox1.Text;
+                            string sql = "DELETE MANUFACTURER WHERE 厂商编号=" + textBox1.Text;
                             using (SqlCommand cmd = new SqlCommand(sql, conn))
                             {
                                 cmd.ExecuteNonQuery();
@@ -151,8 +156,6 @@ namespace WindowsFormsApp1.查看数据表
                 }
             }
         }
-
-
 
     }
 }

@@ -40,6 +40,7 @@ namespace WindowsFormsApp1
         private const string retreat = "SELECT *FROM RETREAT";
         private const string addgoods = "SELECT *FROM GOODS";
         private const string employee = "SELECT *FROM EMPLOYEE";
+        private const string manufacturer = "SELECT *FROM MANUFACTURER";
         public static string Add_thisday => add_thisday;
 
         public static string Add_thismonth => add_thismonth;
@@ -83,6 +84,8 @@ namespace WindowsFormsApp1
         public static string Addgoods => addgoods;
 
         public static string Employee => employee;
+
+        public static string Manufacturer => manufacturer;
     }
     //显示进货、销售信息共用这个类
     //记录查询进货销售信息的视图 的SQL语句 

@@ -24,8 +24,8 @@ namespace WindowsFormsApp1
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Login());
             //
-           //  link2db.constr = "default";
-           // Application.Run(new Exec());
+             //link2db.constr = "default";
+            //Application.Run(new Exec());
             //
             Application.Run(new Link2DB());
             //Application.Run(new AddGoods());
@@ -38,7 +38,8 @@ namespace WindowsFormsApp1
             //Application.Run(new Checksold());
             //Application.Run(new Checkaddgoods());
             //Application.Run(new Checkemployee());
-
+            //Application.Run(new Checkemployee());
+            //Application.Run(new Checkmanufacturer());
 
             Console.WriteLine("Hello,World!");
 
