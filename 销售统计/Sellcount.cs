@@ -25,8 +25,6 @@ namespace WindowsFormsApp1.销售统计
 
         private void Buycount_Load(object sender, EventArgs e)
         {
-            prepare();
-            Console.WriteLine(Views.Thisday);
             showtag1();
             showtag2();
             showtag3();
@@ -40,12 +38,11 @@ namespace WindowsFormsApp1.销售统计
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(Views.Thisday, conn))
+                    using (SqlCommand cmd = new SqlCommand(Views.Sell_thisday, conn))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             int count = adapter.Fill(ds, "销售统计1");
-                            Console.WriteLine(count);
                             dataGridView1.DataSource = ds.Tables["销售统计1"];
                         }
                     }
@@ -61,12 +58,11 @@ namespace WindowsFormsApp1.销售统计
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(Views.Thisday_group, conn))
+                    using (SqlCommand cmd = new SqlCommand(Views.Sell_thisday_group, conn))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             int count = adapter.Fill(ds, "销售统计汇总1");
-                            Console.WriteLine(count);
                             dataGridView2.DataSource = ds.Tables["销售统计汇总1"];
                             int c = 0;
                             while (1 + count != 0)
@@ -92,12 +88,11 @@ namespace WindowsFormsApp1.销售统计
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(Views.Thismonth, conn))
+                    using (SqlCommand cmd = new SqlCommand(Views.Sell_thismonth, conn))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             int count = adapter.Fill(ds, "销售统计2");
-                            Console.WriteLine(count);
                             dataGridView4.DataSource = ds.Tables["销售统计2"];
                         }
                     }
@@ -113,12 +108,11 @@ namespace WindowsFormsApp1.销售统计
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(Views.Thismonth_group, conn))
+                    using (SqlCommand cmd = new SqlCommand(Views.Sell_thismonth_group, conn))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             int count = adapter.Fill(ds, "销售统计汇总2");
-                            Console.WriteLine(count);
                             dataGridView3.DataSource = ds.Tables["销售统计汇总2"];
                             int c = 0;
                             while (1 + count != 0)
@@ -145,13 +139,11 @@ namespace WindowsFormsApp1.销售统计
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    Views.Thisday = "goods";
-                    using (SqlCommand cmd = new SqlCommand(Views.Thisseason, conn))
+                    using (SqlCommand cmd = new SqlCommand(Views.Sell_thisseason, conn))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             int count = adapter.Fill(ds, "销售统计3");
-                            Console.WriteLine(count);
                             dataGridView6.DataSource = ds.Tables["销售统计3"];
                         }
                     }
@@ -167,12 +159,11 @@ namespace WindowsFormsApp1.销售统计
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(Views.Thisseason_group, conn))
+                    using (SqlCommand cmd = new SqlCommand(Views.Sell_thisseason_group, conn))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             int count = adapter.Fill(ds, "销售统计汇总3");
-                            Console.WriteLine(count);
                             dataGridView5.DataSource = ds.Tables["销售统计汇总3"];
                             int c = 0;
                             while (1 + count != 0)
@@ -199,12 +190,11 @@ namespace WindowsFormsApp1.销售统计
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(Views.Thisyear, conn))
+                    using (SqlCommand cmd = new SqlCommand(Views.Sell_thisyear, conn))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             int count = adapter.Fill(ds, "销售统计4");
-                            Console.WriteLine(count);
                             dataGridView8.DataSource = ds.Tables["销售统计4"];
                         }
                     }
@@ -220,12 +210,11 @@ namespace WindowsFormsApp1.销售统计
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(Views.Thisyear_group, conn))
+                    using (SqlCommand cmd = new SqlCommand(Views.Sell_thisyear_group, conn))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             int count = adapter.Fill(ds, "销售统计汇总");
-                            Console.WriteLine(count);
                             dataGridView7.DataSource = ds.Tables["销售统计汇总"];
                             int c = 0;
                             while (1 + count != 0)
@@ -240,25 +229,15 @@ namespace WindowsFormsApp1.销售统计
             }
             catch (Exception ex)
             {
-                MessageBox.Show("in tag 4 :"+ex.Message);
+                MessageBox.Show("in tag 4 :" + ex.Message);
             }
 
         }
 
-        private void prepare()
-        {
-            Views.Thisday="sell";
-            Views.Thismonth = "sell";
-            Views.Thisyear = "sell";
-            Views.Thisseason = "sell";
-            Views.Thisday_group = "sell";
-            Views.Thismonth_group = "sell";
-            Views.Thisseason_group = "sell";
-            Views.Thisyear_group = "sell";
-        }
 
 
-       
+
+
 
         private void Buycount_Resize(object sender, EventArgs e)
         {

@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp1
+﻿namespace WindowsFormsApp1.系统管理
 {
     partial class ModifyPassword
     {

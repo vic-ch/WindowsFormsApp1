@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.系统管理;
 using WindowsFormsApp1.进货统计;
 using WindowsFormsApp1.销售统计;
+using WindowsFormsApp1.业绩查看;
+using WindowsFormsApp1.查看数据表;
 
 namespace WindowsFormsApp1
 {
@@ -21,15 +24,21 @@ namespace WindowsFormsApp1
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Login());
             //
-             link2db.constr = "default";
-            //Application.Run(new Exec());
+           //  link2db.constr = "default";
+           // Application.Run(new Exec());
             //
-            //Application.Run(new Link2DB());
+            Application.Run(new Link2DB());
             //Application.Run(new AddGoods());
-            //.Application.Run(new SellGoods());
+            //Application.Run(new SellGoods());
             //Application.Run(new RetreatGoods());
             //Application.Run(new Buycount());
-            Application.Run(new Sellcount());
+            //Application.Run(new Sellcount());
+            //Application.Run(new Showsell());
+            //Application.Run(new Checkremain());
+            //Application.Run(new Checksold());
+            //Application.Run(new Checkaddgoods());
+            //Application.Run(new Checkemployee());
+
 
             Console.WriteLine("Hello,World!");
 

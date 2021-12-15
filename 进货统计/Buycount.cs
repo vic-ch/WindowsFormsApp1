@@ -25,8 +25,8 @@ namespace WindowsFormsApp1.进货统计
 
         private void Buycount_Load(object sender, EventArgs e)
         {
-            prepare();
-            Console.WriteLine(Views.Thisday);
+           
+            Console.WriteLine(Views.Add_thisday);
             showtag1();
             showtag2();
             showtag3();
@@ -40,12 +40,11 @@ namespace WindowsFormsApp1.进货统计
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(Views.Thisday, conn))
+                    using (SqlCommand cmd = new SqlCommand(Views.Add_thisday, conn))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             int count = adapter.Fill(ds, "进货统计1");
-                            Console.WriteLine(count);
                             dataGridView1.DataSource = ds.Tables["进货统计1"];
                         }
                     }
@@ -61,12 +60,11 @@ namespace WindowsFormsApp1.进货统计
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(Views.Thisday_group, conn))
+                    using (SqlCommand cmd = new SqlCommand(Views.Add_thisday_group, conn))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             int count = adapter.Fill(ds, "进货统计汇总1");
-                            Console.WriteLine(count);
                             dataGridView2.DataSource = ds.Tables["进货统计汇总1"];
                             int c = 0;
                             while (1 + count != 0)
@@ -84,7 +82,7 @@ namespace WindowsFormsApp1.进货统计
                 MessageBox.Show("in tag 1 :" + ex.Message);
             }
 
-        }
+            }
         private void showtag2()
         {
             try
@@ -92,12 +90,11 @@ namespace WindowsFormsApp1.进货统计
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(Views.Thismonth, conn))
+                    using (SqlCommand cmd = new SqlCommand(Views.Add_thismonth, conn))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             int count = adapter.Fill(ds, "进货统计2");
-                            Console.WriteLine(count);
                             dataGridView4.DataSource = ds.Tables["进货统计2"];
                         }
                     }
@@ -113,12 +110,11 @@ namespace WindowsFormsApp1.进货统计
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(Views.Thismonth_group, conn))
+                    using (SqlCommand cmd = new SqlCommand(Views.Add_thismonth_group, conn))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             int count = adapter.Fill(ds, "进货统计汇总2");
-                            Console.WriteLine(count);
                             dataGridView3.DataSource = ds.Tables["进货统计汇总2"];
                             int c = 0;
                             while (1 + count != 0)
@@ -145,13 +141,11 @@ namespace WindowsFormsApp1.进货统计
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    Views.Thisday = "goods";
-                    using (SqlCommand cmd = new SqlCommand(Views.Thisseason, conn))
+                    using (SqlCommand cmd = new SqlCommand(Views.Add_thisseason, conn))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             int count = adapter.Fill(ds, "进货统计3");
-                            Console.WriteLine(count);
                             dataGridView6.DataSource = ds.Tables["进货统计3"];
                         }
                     }
@@ -167,12 +161,11 @@ namespace WindowsFormsApp1.进货统计
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(Views.Thisseason_group, conn))
+                    using (SqlCommand cmd = new SqlCommand(Views.Add_thisseason_group, conn))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             int count = adapter.Fill(ds, "进货统计汇总3");
-                            Console.WriteLine(count);
                             dataGridView5.DataSource = ds.Tables["进货统计汇总3"];
                             int c = 0;
                             while (1 + count != 0)
@@ -199,12 +192,11 @@ namespace WindowsFormsApp1.进货统计
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(Views.Thisyear, conn))
+                    using (SqlCommand cmd = new SqlCommand(Views.Add_thisyear, conn))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             int count = adapter.Fill(ds, "进货统计4");
-                            Console.WriteLine(count);
                             dataGridView8.DataSource = ds.Tables["进货统计4"];
                         }
                     }
@@ -220,12 +212,11 @@ namespace WindowsFormsApp1.进货统计
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(Views.Thisyear_group, conn))
+                    using (SqlCommand cmd = new SqlCommand(Views.Add_thisyear_group, conn))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             int count = adapter.Fill(ds, "进货统计汇总");
-                            Console.WriteLine(count);
                             dataGridView7.DataSource = ds.Tables["进货统计汇总"];
                             int c = 0;
                             while (1 + count != 0)
@@ -240,26 +231,10 @@ namespace WindowsFormsApp1.进货统计
             }
             catch (Exception ex)
             {
-                MessageBox.Show("in tag 4 :"+ex.Message);
+                MessageBox.Show("in tag 4 :" + ex.Message);
             }
 
         }
-
-        private void prepare()
-        {
-            Views.Thisday="goods";
-            Views.Thismonth = "goods";
-            Views.Thisyear = "goods";
-            Views.Thisseason = "goods";
-            Views.Thisday_group = "goods";
-            Views.Thismonth_group = "goods";
-            Views.Thisseason_group = "goods";
-            Views.Thisyear_group = "goods";
-        }
-
-
-       
-
         private void Buycount_Resize(object sender, EventArgs e)
         {
             dataGridView1.Size = new Size(this.Size.Width - 60, dataGridView1.Size.Height);
@@ -271,10 +246,10 @@ namespace WindowsFormsApp1.进货统计
             dataGridView7.Size = new Size(this.Size.Width - 60, dataGridView7.Size.Height);
             dataGridView8.Size = new Size(this.Size.Width - 60, dataGridView8.Size.Height);
             tabControl1.Size = new Size(this.Size.Width - 60, tabControl1.Size.Height);
-            tabPage1.Size = new Size(this.Size.Width -60,tabPage1.Size.Height);
-            tabPage2.Size = new Size(this.Size.Width -60,tabPage2.Size.Height);
-            tabPage3.Size = new Size(this.Size.Width -60,tabPage3.Size.Height);
-            tabPage4.Size = new Size(this.Size.Width -60,tabPage4.Size.Height);
+            tabPage1.Size = new Size(this.Size.Width - 60, tabPage1.Size.Height);
+            tabPage2.Size = new Size(this.Size.Width - 60, tabPage2.Size.Height);
+            tabPage3.Size = new Size(this.Size.Width - 60, tabPage3.Size.Height);
+            tabPage4.Size = new Size(this.Size.Width - 60, tabPage4.Size.Height);
         }
 
     }

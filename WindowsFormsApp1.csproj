@@ -64,7 +64,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Settings.cs" />
+    <Compile Include="业绩查看\Showsell.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="业绩查看\Showsell.Designer.cs">
+      <DependentUpon>Showsell.cs</DependentUpon>
+    </Compile>
     <Compile Include="交易管理\RetreatGoods.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +87,36 @@
     </Compile>
     <Compile Include="交易管理\AddGoods.Designer.cs">
       <DependentUpon>AddGoods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="查看数据表\Checkemployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="查看数据表\Checkemployee.Designer.cs">
+      <DependentUpon>Checkemployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="查看数据表\Checkaddgoods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="查看数据表\Checkaddgoods.Designer.cs">
+      <DependentUpon>Checkaddgoods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="查看数据表\Checkretreat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="查看数据表\Checkretreat.Designer.cs">
+      <DependentUpon>Checkretreat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="查看数据表\Checksold.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="查看数据表\Checksold.Designer.cs">
+      <DependentUpon>Checksold.cs</DependentUpon>
+    </Compile>
+    <Compile Include="查看数据表\Checkremain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="查看数据表\Checkremain.Designer.cs">
+      <DependentUpon>Checkremain.cs</DependentUpon>
     </Compile>
     <Compile Include="系统管理\AddUser.cs">
       <SubType>Form</SubType>
@@ -129,6 +164,9 @@
     <Compile Include="销售统计\Sellcount.Designer.cs">
       <DependentUpon>Sellcount.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="业绩查看\Showsell.resx">
+      <DependentUpon>Showsell.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="交易管理\RetreatGoods.resx">
       <DependentUpon>RetreatGoods.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -140,6 +178,21 @@
     <EmbeddedResource Include="交易管理\AddGoods.resx">
       <DependentUpon>AddGoods.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="查看数据表\Checkemployee.resx">
+      <DependentUpon>Checkemployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="查看数据表\Checkaddgoods.resx">
+      <DependentUpon>Checkaddgoods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="查看数据表\Checkretreat.resx">
+      <DependentUpon>Checkretreat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="查看数据表\Checksold.resx">
+      <DependentUpon>Checksold.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="查看数据表\Checkremain.resx">
+      <DependentUpon>Checkremain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="系统管理\AddUser.resx">
       <DependentUpon>AddUser.cs</DependentUpon>
@@ -179,15 +232,6 @@
       <DependentUpon>Sellcount.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -209,7 +253,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="查看数据表\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

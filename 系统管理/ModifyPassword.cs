@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 
 
-namespace WindowsFormsApp1
+namespace WindowsFormsApp1.系统管理
 {
     public partial class ModifyPassword : Form
     {
