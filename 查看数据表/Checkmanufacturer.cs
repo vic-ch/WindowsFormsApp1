@@ -111,9 +111,19 @@ namespace WindowsFormsApp1.查看数据表
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                     {
                         conn.Open();
-                        string sql = "UPDATE MANUFACTURER SET 厂商名称='"+textBox2.Text.Trim()+"' ,法人代表 ='"+textBox3.Text.Trim()+"', 电话='"+textBox4.Text.Trim() + "', 厂商地址='" + textBox5.Text.Trim() + "' WHERE 厂商编号="+textBox1.Text.Trim();
+                        string sql = "UPDATE MANUFACTURER SET 厂商名称=@name ,法人代表 =@legalresp, 电话=@tell, 厂商地址=@address  WHERE 厂商编号=@id";
                         using (SqlCommand cmd = new SqlCommand(sql, conn))
                         {
+                            cmd.Parameters.Add(new SqlParameter("@name", SqlDbType.NVarChar, 20));
+                            cmd.Parameters.Add(new SqlParameter("@legalresp", SqlDbType.NVarChar, 20));
+                            cmd.Parameters.Add(new SqlParameter("@tell", SqlDbType.NVarChar, 20));
+                            cmd.Parameters.Add(new SqlParameter("@address", SqlDbType.NVarChar, 100));
+                            cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+                            cmd.Parameters["@name"].Value=textBox2.Text.Trim();
+                            cmd.Parameters["@legalresp"].Value=textBox3.Text.Trim();
+                            cmd.Parameters["@tell"].Value=textBox4.Text.Trim();
+                            cmd.Parameters["@address"].Value=textBox5.Text.Trim();
+                            cmd.Parameters["@id"].Value=textBox1.Text.Trim();
                             cmd.ExecuteNonQuery();
                             MessageBox.Show("修改成功！");
 
@@ -140,9 +150,11 @@ namespace WindowsFormsApp1.查看数据表
                         using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                         {
                             conn.Open();
-                            string sql = "DELETE MANUFACTURER WHERE 厂商编号=" + textBox1.Text;
+                            string sql = "DELETE MANUFACTURER WHERE 厂商编号=@id";
                             using (SqlCommand cmd = new SqlCommand(sql, conn))
                             {
+                                cmd.Parameters.Add(new SqlParameter("@id",SqlDbType.Int));
+                                cmd.Parameters["@id"].Value = textBox1.Text;
                                 cmd.ExecuteNonQuery();
                                 MessageBox.Show("修改成功！");
                                 dataload();

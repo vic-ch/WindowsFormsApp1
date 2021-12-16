@@ -88,7 +88,7 @@ namespace WindowsFormsApp1
             string connectionString;
             ConnectionStringSettings setConnStr;
 
-
+            
             if (radioButton2.Checked)
             {
                 //设置连接字符串
@@ -98,7 +98,7 @@ namespace WindowsFormsApp1
             else
             {
                 //设置连接字符串
-                connectionString = "server=" + comboBox_server.Text + ";database=" + comboBox_database.Text + ";Initial Catalog=sellsystem;Integrated Security=True";
+                connectionString = "server=" + comboBox_server.Text + ";Initial Catalog=" + comboBox_database.Text + ";Integrated Security=True";
                 setConnStr = new ConnectionStringSettings(l.conStrName, connectionString, "System.Data.SqlClient");
             }
 
@@ -162,31 +162,32 @@ namespace WindowsFormsApp1
 
         private void button_Sign_in_Click(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)
-            {
-                //选中了"使用默认链接"
-                //则使用默认字符串
-                link2db.constr = "default";
-                if (TestLink())
-                {
-                    Login login = new Login();
-                    this.Hide();
-                    login.Show();
-                }
-            }
-            else
-            {
+            //if (checkBox1.Checked)
+            //{
+            //    //选中了"使用默认链接"
+            //    //则使用默认字符串
+            //    link2db.constr = "default";
+            //    if (TestLink())
+            //    {
+            //        Login login = new Login();
+            //        this.Hide();
+            //        login.Show();
+            //    }
+            //}
+            //else
+            //{
                 //自定义方式连接
                 //连接字符串
                 Join_str();
                 link2db.constr = l.conStrName;
+            Console.WriteLine(link2db.constr);
                 if (TestLink())
                 {
                     Login login = new Login();
                     this.Hide();
                     login.Show();
                 }
-            }
+            //}
             
         }
 
@@ -222,6 +223,8 @@ namespace WindowsFormsApp1
                 return false;
             }
         }
+
+
     }
 
 }

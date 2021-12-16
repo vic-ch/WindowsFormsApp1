@@ -26,39 +26,50 @@ namespace WindowsFormsApp1
         private void btn_login_Click(object sender, EventArgs e)
         {
             //new一个connection对象，并获取App.config文件中的con的connectionString的值作为这个对象的构造函数的参数
-            
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
+            try
             {
-                conn.Open();
-                string sql = "select 用户名,密码 from userdb where 用户名='" + txb_username.Text + "'and 密码='" + txb_password.Text + "'";//获取textBox中的字符串并组成查询语句
-
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
-                    //new一个Command对象，
+                    conn.Open();
+                    string sql = "select 用户名,密码 from userdb where 用户名=@name and 密码=@pwd";//获取textBox中的字符串并组成查询语句
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        //通过ExecuteReader方法执行cmd命令，并将查询结果返回给reader
-                        //此处也可以仅使用用户名查询到密码并返回密码值与textBox的值比对。
+                        cmd.Parameters.Add(new SqlParameter("@name", SqlDbType.NVarChar, 20));
+                        cmd.Parameters.Add(new SqlParameter("@pwd", SqlDbType.NVarChar, 20));
 
-                        if (reader.Read())      //如果有返回行，表示在表中查到这个账号并且密码正确
-                        {
-                            CurrentUser.name = reader.GetString(0);
-                            Console.WriteLine(CurrentUser.name);
-                            CurrentUser.status = 1;
+                        cmd.Parameters["@name"].Value = txb_username.Text;
+                        cmd.Parameters["@pwd"].Value = txb_password.Text;
 
-                            //进入exec界面
-                            this.Hide();
-                            Exec exec = new Exec();
-                            exec.Show();
-                        }
-                        else                    //没有返回一行，表示在数据库中没有找到输入的账号密码
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            MessageBox.Show("用户名或密码输入错误！", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //通过ExecuteReader方法执行cmd命令，并将查询结果返回给reader
+                            //此处也可以仅使用用户名查询到密码并返回密码值与textBox的值比对。
+
+                            if (reader.Read())      //如果有返回行，表示在表中查到这个账号并且密码正确
+                            {
+                                CurrentUser.name = reader.GetString(0);
+                                Console.WriteLine(CurrentUser.name);
+                                CurrentUser.status = 1;
+
+                                //进入exec界面
+                                this.Hide();
+                                Exec exec = new Exec();
+                                exec.Show();
+                            }
+                            else                    //没有返回一行，表示在数据库中没有找到输入的账号密码
+                            {
+                                MessageBox.Show("用户名或密码输入错误！", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
+
                     }
-
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
           
         }
@@ -68,6 +79,11 @@ namespace WindowsFormsApp1
             this.Close();
             Application.Exit();
         }
-      
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            txb_password.Text = "yy";
+            txb_username.Text = "yy";
+        }
     }
 }

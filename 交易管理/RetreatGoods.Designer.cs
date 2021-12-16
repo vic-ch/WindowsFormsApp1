@@ -187,6 +187,7 @@
             this.textBox6.Size = new System.Drawing.Size(100, 21);
             this.textBox6.TabIndex = 4;
             this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
+            this.textBox6.Leave += new System.EventHandler(this.textBox6_Leave);
             // 
             // textBox5
             // 
@@ -195,6 +196,7 @@
             this.textBox5.Size = new System.Drawing.Size(100, 21);
             this.textBox5.TabIndex = 3;
             this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+            this.textBox5.Leave += new System.EventHandler(this.textBox5_Leave);
             // 
             // textBox4
             // 

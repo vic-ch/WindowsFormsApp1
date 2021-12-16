@@ -18,13 +18,12 @@ namespace WindowsFormsApp1
         /// </summary>
         [STAThread]
         static void Main()
-        {
-            
+        {            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Login());
             //
-             //link2db.constr = "default";
+             link2db.constr = "default";
             //Application.Run(new Exec());
             //
             Application.Run(new Link2DB());
@@ -37,7 +36,6 @@ namespace WindowsFormsApp1
             //Application.Run(new Checkremain());
             //Application.Run(new Checksold());
             //Application.Run(new Checkaddgoods());
-            //Application.Run(new Checkemployee());
             //Application.Run(new Checkemployee());
             //Application.Run(new Checkmanufacturer());
 

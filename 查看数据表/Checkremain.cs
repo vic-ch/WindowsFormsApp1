@@ -133,7 +133,5 @@ namespace WindowsFormsApp1.查看数据表
             }
 
         }
-        //按回车键响应查询
-        //按Escape清空
     }
 }

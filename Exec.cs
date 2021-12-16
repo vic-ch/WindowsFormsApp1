@@ -184,8 +184,8 @@ namespace WindowsFormsApp1
 
         private void button18_进货商信息_Click(object sender, EventArgs e)
         {
-            //Checkmanufacturer checkmanufacturer = new Checkmanufacturer();
-            //checkmanufacturer.Show();
+            Checkmanufacturer checkmanufacturer = new Checkmanufacturer();
+            checkmanufacturer.Show();
         }
 #endregion
 

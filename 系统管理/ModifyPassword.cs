@@ -54,9 +54,12 @@ namespace WindowsFormsApp1.系统管理
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    string sql = "SELECT 密码 FROM USERDB WHERE 用户名='" + CurrentUser.name + "'";
+                    string sql = "SELECT 密码 FROM USERDB WHERE 用户名=@name";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
+                        cmd.Parameters.Add(new SqlParameter("@name", SqlDbType.NVarChar, 10));
+                        cmd.Parameters["@name"].Value = CurrentUser.name;
+
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
@@ -64,14 +67,19 @@ namespace WindowsFormsApp1.系统管理
                                 //检查原来的密码是否正确
                                 if (textBox2.Text == reader.GetString(0))
                                 {
-                                    string sql1 = "UPDATE USERDB SET 密码='" + textBox3.Text + "' WHERE 用户名='" + CurrentUser.name + "'";
-                                    string sql2 = "SELECT 密码 FROM USERDB WHERE 用户名='" + CurrentUser.name + "'";
+                                    string sql1 = "UPDATE USERDB SET 密码=@pwd WHERE 用户名=@name";
+                                    string sql2 = "SELECT 密码 FROM USERDB WHERE 用户名=@name";
                                     using (SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                                     {
                                         conn2.Open();
 
                                         using (SqlCommand cmd1 = new SqlCommand(sql1, conn2))
                                         {
+
+                                            cmd1.Parameters.Add(new SqlParameter("@name",SqlDbType.NVarChar, 10));
+                                            cmd1.Parameters.Add(new SqlParameter("@id",SqlDbType.NVarChar, 10));
+                                            cmd1.Parameters["@name"].Value=CurrentUser.name;
+                                            cmd1.Parameters["@pwd"].Value=textBox3.Text;
                                             if (cmd1.ExecuteNonQuery() == 1)
                                             {
 
@@ -82,13 +90,15 @@ namespace WindowsFormsApp1.系统管理
 
                                                     using (SqlCommand cmd2 = new SqlCommand(sql2, conn3))
                                                     {
+                                                        cmd2.Parameters.Add(new SqlParameter("@name", SqlDbType.NVarChar, 10));
+                                                        cmd2.Parameters["@name"].Value = textBox3.Text;
                                                         using (SqlDataReader reader2 = cmd2.ExecuteReader())
                                                         {
                                                             if (reader2.Read())
                                                             {
                                                                 if (textBox3.Text == reader2.GetString(0))
                                                                 {
-                                                                    MessageBox.Show("修改成功！");
+                                                                    MessageBox.Show("修改成功！下次登录时生效");
 
                                                                     CurrentUser.status = 0;
                                                                     this.Close();

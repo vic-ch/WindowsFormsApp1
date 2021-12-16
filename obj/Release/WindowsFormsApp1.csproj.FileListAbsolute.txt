@@ -24,3 +24,4 @@ C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.Gen
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.CoreCompileInputs.cache
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.exe
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.pdb
+C:\Users\z\source\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.AssemblyReference.cache

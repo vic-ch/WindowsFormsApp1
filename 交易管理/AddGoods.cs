@@ -40,11 +40,7 @@ namespace WindowsFormsApp1
             checkBox1.Checked = true;
 
             add_items();
-           //Console.WriteLine(comboBox1.Items.Count);
-            //Console.WriteLine(comboBox1.Items[0]);
-            //comboBox1.SelectedIndex = 0;
-            //Console.WriteLine(comboBox1.Text);
-            
+           
         }
 
 
@@ -83,8 +79,6 @@ namespace WindowsFormsApp1
                 numericUpDown1.Text = dateTime.Year.ToString();
                 numericUpDown2.Text = dateTime.Month.ToString();
                 numericUpDown3.Text = dateTime.Day.ToString();
-
-
             }
         }
 
@@ -134,21 +128,43 @@ namespace WindowsFormsApp1
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ToString()))
                     {
                         string sql = "SELECT count(*) FROM GOODS WHERE " +
-                          "商品名='" + textBox2.Text + "' AND " +
-                          "生产厂商='" + comboBox1.SelectedItem + "' AND " +
-                          "型号='" + textBox4.Text + "' AND " +
-                          "单价=" + textBox5.Text + " AND " +
-                          "数量=" + textBox6.Text + " AND " +
-                          "进货年=" + numericUpDown1.Value + " AND " +
-                          "进货月=" + numericUpDown2.Value + " AND " +
-                          "进货日=" + numericUpDown3.Value + " AND " +
-                          "业务员编号=" + textBox10.Text + " AND " +
-                          "总金额=" + textBox11.Text + "";
+                          "商品名=@商品名 AND " +
+                          "生产厂商=生产厂商 AND " +
+                          "型号=@型号 AND " +
+                          "单价=@单价 AND " +
+                          "数量=@数量 AND " +
+                          "进货年=@进货年 AND " +
+                          "进货月=@进货月 AND " +
+                          "进货日=@进货日 AND " +
+                          "业务员编号=@业务员编号 AND " +
+                          "总金额=@总金额";
 
                         conn.Open();
 
                         using (SqlCommand cmd = new SqlCommand(sql, conn))
                         {
+                            cmd.Parameters.Add(new SqlParameter("@商品名",SqlDbType.NVarChar,20)) ;
+                            cmd.Parameters.Add(new SqlParameter("@生产厂商",SqlDbType.NVarChar,20)) ;
+                            cmd.Parameters.Add(new SqlParameter("@型号",SqlDbType.NVarChar,20)) ;
+                            cmd.Parameters.Add(new SqlParameter("@单价",SqlDbType.Money)) ;
+                            cmd.Parameters.Add(new SqlParameter("@数量",SqlDbType.Int)) ;
+                            cmd.Parameters.Add(new SqlParameter("@进货年", SqlDbType.SmallInt)) ;
+                            cmd.Parameters.Add(new SqlParameter("@进货月", SqlDbType.SmallInt)) ;
+                            cmd.Parameters.Add(new SqlParameter("@进货日",SqlDbType.SmallInt)) ;
+                            cmd.Parameters.Add(new SqlParameter("@业务员编号",SqlDbType.Int)) ;
+                            cmd.Parameters.Add(new SqlParameter("@总金额",SqlDbType.Money));
+
+                            cmd.Parameters["@商品名"].Value=textBox2.Text;
+                            cmd.Parameters["@生产厂商"].Value = comboBox1.SelectedItem;
+                            cmd.Parameters["@型号"].Value = textBox4.Text;
+                            cmd.Parameters["@单价"].Value = textBox5.Text;
+                            cmd.Parameters["@数量"].Value = textBox6.Text;
+                            cmd.Parameters["@进货年"].Value = numericUpDown1.Value;
+                            cmd.Parameters["@进货月"].Value = numericUpDown2.Value;
+                            cmd.Parameters["@进货日"].Value = numericUpDown3.Value;
+                            cmd.Parameters["@业务员编号"].Value = textBox10.Text;
+                            cmd.Parameters["@总金额"].Value = textBox11.Text;
+
                             using (SqlDataReader reader = cmd.ExecuteReader())
                             {
                                 if (reader.Read())
@@ -159,12 +175,35 @@ namespace WindowsFormsApp1
                                     }
                                     else
                                     {
-                                        sql = "INSERT INTO GOODS (商品名,生产厂商,型号,单价,数量,进货年,进货月,进货日,业务员编号,总金额) VALUES ('" + textBox2.Text + "','" + comboBox1.SelectedItem + "','" + textBox4.Text + "'," + textBox5.Text + "," + textBox6.Text + "," + numericUpDown1.Value + "," + numericUpDown2.Value + "," + numericUpDown3.Value + "," + textBox10.Text + "," + textBox11.Text + ")";
+                                        sql = "INSERT INTO GOODS (商品名,生产厂商,型号,单价,数量,进货年,进货月,进货日,业务员编号,总金额) " +
+                                            "VALUES (@商品名,@生产厂商,@型号,@单价,@数量,@进货年,@进货月,@进货日,@业务员编号,@总金额)";
                                         using (SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                                         {
                                             conn2.Open();
                                             using (SqlCommand cmd2 = new SqlCommand(sql, conn2))
                                             {
+                                                cmd.Parameters.Add(new SqlParameter("@商品名", SqlDbType.NVarChar, 20));
+                                                cmd.Parameters.Add(new SqlParameter("@生产厂商", SqlDbType.NVarChar, 20));
+                                                cmd.Parameters.Add(new SqlParameter("@型号", SqlDbType.NVarChar, 20));
+                                                cmd.Parameters.Add(new SqlParameter("@单价", SqlDbType.Money));
+                                                cmd.Parameters.Add(new SqlParameter("@数量", SqlDbType.Int));
+                                                cmd.Parameters.Add(new SqlParameter("@进货年", SqlDbType.SmallInt));
+                                                cmd.Parameters.Add(new SqlParameter("@进货月", SqlDbType.SmallInt));
+                                                cmd.Parameters.Add(new SqlParameter("@进货日", SqlDbType.SmallInt));
+                                                cmd.Parameters.Add(new SqlParameter("@业务员编号", SqlDbType.Int));
+                                                cmd.Parameters.Add(new SqlParameter("@总金额", SqlDbType.Money));
+
+                                                cmd.Parameters["@商品名"].Value = textBox2.Text;
+                                                cmd.Parameters["@生产厂商"].Value = comboBox1.SelectedItem;
+                                                cmd.Parameters["@型号"].Value = textBox4.Text;
+                                                cmd.Parameters["@单价"].Value = textBox5.Text;
+                                                cmd.Parameters["@数量"].Value = textBox6.Text;
+                                                cmd.Parameters["@进货年"].Value = numericUpDown1.Value;
+                                                cmd.Parameters["@进货月"].Value = numericUpDown2.Value;
+                                                cmd.Parameters["@进货日"].Value = numericUpDown3.Value;
+                                                cmd.Parameters["@业务员编号"].Value = textBox10.Text;
+                                                cmd.Parameters["@总金额"].Value = textBox11.Text;
+
                                                 cmd2.ExecuteNonQuery();
                                                 MessageBox.Show("添加成功！");
                                                 this.Close();
@@ -283,17 +322,27 @@ namespace WindowsFormsApp1
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                     {
                         conn.Open(); 
-                        string sql = "INSERT INTO MANUFACTURER (厂商名称,法人代表,电话,厂商地址)VALUES('" + textBox12.Text + "','" + textBox13.Text + "','" + textBox14.Text + "','" + textBox15.Text + "')";
+                        string sql = "INSERT INTO MANUFACTURER (厂商名称,法人代表,电话,厂商地址)VALUES(@name,@legalresp,@tell,@address)";
 
                         using (SqlCommand cmd=new SqlCommand(sql, conn))
                         {
+                            cmd.Parameters.Add(new SqlParameter("@name", SqlDbType.NVarChar, 20));
+                            cmd.Parameters.Add(new SqlParameter("@legalresp", SqlDbType.NVarChar, 20));
+                            cmd.Parameters.Add(new SqlParameter("@tell", SqlDbType.NVarChar, 20));
+                            cmd.Parameters.Add(new SqlParameter("@address", SqlDbType.NVarChar, 100));
+                            cmd.Parameters["@name"].Value = textBox12.Text.Trim();
+                            cmd.Parameters["@legalresp"].Value = textBox13.Text.Trim();
+                            cmd.Parameters["@tell"].Value = textBox14.Text.Trim();
+                            cmd.Parameters["@address"].Value = textBox15.Text.Trim();
                             cmd.ExecuteNonQuery();
-                            sql = "SELECT 厂商名称,法人代表,电话,厂商地址 FROM MANUFACTURER WHERE 厂商名称='" + textBox12.Text + "'";
+                            sql = "SELECT 厂商名称,法人代表,电话,厂商地址 FROM MANUFACTURER WHERE 厂商名称=@name";
                             using (SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                             {
                                 conn2.Open();
                                 using (SqlCommand cmd2 = new SqlCommand(sql, conn2))
                                 {
+                                    cmd2.Parameters.Add(new SqlParameter("@name", SqlDbType.NVarChar, 20));
+                                    cmd2.Parameters["@name"].Value = textBox12.Text.Trim();
                                     using (SqlDataReader reader = cmd2.ExecuteReader())
                                     {
                                         if (reader.Read())
@@ -331,17 +380,83 @@ namespace WindowsFormsApp1
         //改变单价时自动修改总价
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
-            if (textBox6.Text.Length != 0 && textBox5.Text.Length != 0)
-            {
-                textBox11.Text = (int.Parse(textBox5.Text) * int.Parse(textBox6.Text)).ToString();
-            }
+           
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
-            if (textBox5.Text.Length != 0 && textBox6.Text.Length != 0)
+           
+        }
+
+        private void textBox5_Leave(object sender, EventArgs e)
+        {
+            //当未填写tb6时,检查tb5的值是否能转为数字。
+            //不赋值
+            if (textBox5.Text.Length != 0&&textBox6.Text.Length==0)
             {
-                textBox11.Text = (int.Parse(textBox5.Text) * int.Parse(textBox6.Text)).ToString();
+                if (float.TryParse(textBox5.Text, out float value) == true)
+                {
+                    return;
+                }
+                else
+                {                
+                    MessageBox.Show("请输入数值");
+                    textBox5.Focus(); //将光标锁定，直到输入正确格式才能离开，避免输入错误
+                    return;
+                }
+            }
+
+            //已经填写了6，又返回来变动5时，检查
+            //赋值
+            if (textBox6.Text.Length != 0 && textBox5.Text.Length != 0)
+            {
+                if (float.TryParse(textBox5.Text, out float value) == true)
+                {
+                    textBox11.Text = (float.Parse(textBox5.Text) * int.Parse(textBox6.Text)).ToString("F2");
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("请输入数值");
+                    textBox5.Focus(); //将光标锁定，直到输入正确格式才能离开，避免输入错误
+                    return;
+                }
+            }
+
+        }
+
+        private void textBox6_Leave(object sender, EventArgs e)
+        {
+            //当未填写tb5并且先填了6,检查tb6的值是否能转为数字。
+            if (textBox6.TextLength != 0&&textBox5.TextLength==0)
+            {
+                  if(int.TryParse(textBox6.Text,out int value) == true)
+                {
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("请输入数值");
+                    textBox6.Focus();
+                    return;
+                }
+            }
+
+            //先填写了5，又返回来变动6时，检查
+            //赋值
+            if (textBox6.Text.Length != 0 && textBox5.Text.Length != 0)
+            {
+                 if(int.TryParse(textBox6.Text,out int value) == true)
+                {
+                    textBox11.Text = (float.Parse(textBox5.Text) * int.Parse(textBox6.Text)).ToString("F2");
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("请输入数值");
+                    textBox6.Focus();
+                    return;
+                }
             }
         }
     }

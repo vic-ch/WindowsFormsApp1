@@ -160,10 +160,33 @@ namespace WindowsFormsApp1
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ToString()))
                     {
                         conn.Open();
-                        string sql = "INSERT INTO RETREAT (商品名,生产厂商,型号,单价,数量,退货年,退货月,退货日,业务员编号,总金额) VALUES ('" + textBox2.Text + "','" + comboBox1.Text + "','" + textBox4.Text + "'," + textBox5.Text + "," + textBox6.Text + "," + numericUpDown1.Value + "," + numericUpDown2.Value + "," + numericUpDown3.Value + "," + textBox10.Text + "," + textBox11.Text + ")";
-
+                        string sql = "INSERT INTO RETREAT (商品名,生产厂商,型号,单价,数量,退货年,退货月,退货日,业务员编号,总金额) " +
+                            "VALUES (@商品名,@生产厂商,@型号,@单价,@数量,@退货年,@退货月,@退货日,@业务员编号,@总金额)";
                         using (SqlCommand cmd = new SqlCommand(sql, conn))
                         {
+
+                            cmd.Parameters.Add(new SqlParameter("@商品名", SqlDbType.NVarChar, 20));
+                            cmd.Parameters.Add(new SqlParameter("@生产厂商", SqlDbType.NVarChar, 20));
+                            cmd.Parameters.Add(new SqlParameter("@型号", SqlDbType.NVarChar, 20));
+                            cmd.Parameters.Add(new SqlParameter("@单价", SqlDbType.Money));
+                            cmd.Parameters.Add(new SqlParameter("@数量", SqlDbType.Int));
+                            cmd.Parameters.Add(new SqlParameter("@退货年", SqlDbType.SmallInt));
+                            cmd.Parameters.Add(new SqlParameter("@退货月", SqlDbType.SmallInt));
+                            cmd.Parameters.Add(new SqlParameter("@退货日", SqlDbType.SmallInt));
+                            cmd.Parameters.Add(new SqlParameter("@业务员编号", SqlDbType.Int));
+                            cmd.Parameters.Add(new SqlParameter("@总金额", SqlDbType.Money));
+
+                            cmd.Parameters["@商品名"].Value = textBox2.Text;
+                            cmd.Parameters["@生产厂商"].Value = comboBox1.SelectedItem;
+                            cmd.Parameters["@型号"].Value = textBox4.Text;
+                            cmd.Parameters["@单价"].Value = textBox5.Text;
+                            cmd.Parameters["@数量"].Value = textBox6.Text;
+                            cmd.Parameters["@退货年"].Value = numericUpDown1.Value;
+                            cmd.Parameters["@退货月"].Value = numericUpDown2.Value;
+                            cmd.Parameters["@退货日"].Value = numericUpDown3.Value;
+                            cmd.Parameters["@业务员编号"].Value = textBox10.Text;
+                            cmd.Parameters["@总金额"].Value = textBox11.Text;
+
                             cmd.ExecuteNonQuery();
                             MessageBox.Show("退货成功！");
                             this.Close();
@@ -256,17 +279,82 @@ namespace WindowsFormsApp1
         //改变单价时自动修改总价
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
-            if (textBox6.Text.Length != 0&&textBox5.Text.Length!=0)
-            {
-                textBox11.Text = (int.Parse(textBox5.Text) * int.Parse(textBox6.Text)).ToString();
-            }
+          
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
-            if (textBox5.Text.Length != 0&& textBox6.Text.Length!=0)
+        }
+
+        private void textBox5_Leave(object sender, EventArgs e)
+        {
+            //当未填写tb6时,检查tb5的值是否能转为数字。
+            //不赋值
+            if (textBox5.Text.Length != 0 && textBox6.Text.Length == 0)
             {
-                textBox11.Text = (int.Parse(textBox5.Text) * int.Parse(textBox6.Text)).ToString();
+                if (float.TryParse(textBox5.Text, out float value) == true)
+                {
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("请输入数值");
+                    textBox5.Focus(); //将光标锁定，直到输入正确格式才能离开，避免输入错误
+                    return;
+                }
+            }
+
+            //已经填写了6，又返回来变动5时，检查
+            //赋值
+            if (textBox6.Text.Length != 0 && textBox5.Text.Length != 0)
+            {
+                if (float.TryParse(textBox5.Text, out float value) == true)
+                {
+                    textBox11.Text = (float.Parse(textBox5.Text) * int.Parse(textBox6.Text)).ToString("F2");
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("请输入数值");
+                    textBox5.Focus(); //将光标锁定，直到输入正确格式才能离开，避免输入错误
+                    return;
+                }
+            }
+
+        }
+
+        private void textBox6_Leave(object sender, EventArgs e)
+        {
+            //当未填写tb5并且先填了6,检查tb6的值是否能转为数字。
+            if (textBox6.TextLength != 0 && textBox5.TextLength == 0)
+            {
+                if (int.TryParse(textBox6.Text, out int value) == true)
+                {
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("请输入数值");
+                    textBox6.Focus();
+                    return;
+                }
+            }
+
+            //先填写了5，又返回来变动6时，检查
+            //赋值
+            if (textBox6.Text.Length != 0 && textBox5.Text.Length != 0)
+            {
+                if (int.TryParse(textBox6.Text, out int value) == true)
+                {
+                    textBox11.Text = (float.Parse(textBox5.Text) * int.Parse(textBox6.Text)).ToString("F2");
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("请输入数值");
+                    textBox6.Focus();
+                    return;
+                }
             }
         }
     }
