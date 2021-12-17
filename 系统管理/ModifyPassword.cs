@@ -77,7 +77,7 @@ namespace WindowsFormsApp1.系统管理
                                         {
 
                                             cmd1.Parameters.Add(new SqlParameter("@name",SqlDbType.NVarChar, 10));
-                                            cmd1.Parameters.Add(new SqlParameter("@id",SqlDbType.NVarChar, 10));
+                                            cmd1.Parameters.Add(new SqlParameter("@pwd",SqlDbType.NVarChar, 10));
                                             cmd1.Parameters["@name"].Value=CurrentUser.name;
                                             cmd1.Parameters["@pwd"].Value=textBox3.Text;
                                             if (cmd1.ExecuteNonQuery() == 1)

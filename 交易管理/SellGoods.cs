@@ -138,10 +138,10 @@ namespace WindowsFormsApp1
                                     if (reader.GetString(0) == textBox2.Text && reader.GetString(1) == textBox4.Text && reader.GetString(2) == comboBox1.Text)
                                     {   
                                         flag_exists = true;
-                                        if (reader.GetDecimal(3) > int.Parse(textBox6.Text))
+                                        if (reader.GetInt32(3)> int.Parse(textBox6.Text))
                                         {
                                             flag_remain= true;
-                                            MessageBox.Show("查询到该商品库存数量充足！","！", MessageBoxButtons.OKCancel,MessageBoxIcon.Question) ;
+                                            MessageBox.Show("查询到该商品库存数量充足！\n确定出售吗?","！", MessageBoxButtons.OKCancel,MessageBoxIcon.Question) ;
                                         }
                                     }
                                 }
@@ -170,8 +170,11 @@ namespace WindowsFormsApp1
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ToString()))
                     {
                         conn.Open();
-                        string sql = "INSERT INTO SELL (商品名,生产厂商,型号,单价,数量,销售年,销售月,销售日,业务员编号,总金额)" +
-                            " VALUES (@商品名,@生产厂商,@型号,@单价,@数量,@销售年,@销售月,@销售日,@业务员编号,@总金额)";
+                        string sql = "BEGIN TRANSACTION " +
+                            "INSERT INTO SELL (商品名,生产厂商,型号,单价,数量,销售年,销售月,销售日,业务员编号,总金额)" +
+                            " VALUES (@商品名,@生产厂商,@型号,@单价,@数量,@销售年,@销售月,@销售日,@业务员编号,@总金额)" +
+                            "UPDATE GOODSREMAIN SET 数量 = 数量 - @数量 WHERE 商品名 = @商品名 AND 生产厂商 = @生产厂商 AND 型号 = @型号 " +
+                            "COMMIT "; 
 
                         using (SqlCommand cmd = new SqlCommand(sql, conn))
                         {
@@ -180,20 +183,20 @@ namespace WindowsFormsApp1
                             cmd.Parameters.Add(new SqlParameter("@型号", SqlDbType.NVarChar, 20));
                             cmd.Parameters.Add(new SqlParameter("@单价", SqlDbType.Money));
                             cmd.Parameters.Add(new SqlParameter("@数量", SqlDbType.Int));
-                            cmd.Parameters.Add(new SqlParameter("@进货年", SqlDbType.SmallInt));
-                            cmd.Parameters.Add(new SqlParameter("@进货月", SqlDbType.SmallInt));
-                            cmd.Parameters.Add(new SqlParameter("@进货日", SqlDbType.SmallInt));
+                            cmd.Parameters.Add(new SqlParameter("@销售年", SqlDbType.SmallInt));
+                            cmd.Parameters.Add(new SqlParameter("@销售月", SqlDbType.SmallInt));
+                            cmd.Parameters.Add(new SqlParameter("@销售日", SqlDbType.SmallInt));
                             cmd.Parameters.Add(new SqlParameter("@业务员编号", SqlDbType.Int));
                             cmd.Parameters.Add(new SqlParameter("@总金额", SqlDbType.Money));
 
                             cmd.Parameters["@商品名"].Value = textBox2.Text;
-                            cmd.Parameters["@生产厂商"].Value = comboBox1.SelectedItem;
+                            cmd.Parameters["@生产厂商"].Value = comboBox1.Text;
                             cmd.Parameters["@型号"].Value = textBox4.Text;
                             cmd.Parameters["@单价"].Value = textBox5.Text;
                             cmd.Parameters["@数量"].Value = textBox6.Text;
-                            cmd.Parameters["@进货年"].Value = numericUpDown1.Value;
-                            cmd.Parameters["@进货月"].Value = numericUpDown2.Value;
-                            cmd.Parameters["@进货日"].Value = numericUpDown3.Value;
+                            cmd.Parameters["@销售年"].Value = numericUpDown1.Value;
+                            cmd.Parameters["@销售月"].Value = numericUpDown2.Value;
+                            cmd.Parameters["@销售日"].Value = numericUpDown3.Value;
                             cmd.Parameters["@业务员编号"].Value = textBox10.Text;
                             cmd.Parameters["@总金额"].Value = textBox11.Text;
 

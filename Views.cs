@@ -38,7 +38,7 @@ namespace WindowsFormsApp1
 
         private const string sell = "SELECT *FROM SELL";
         private const string retreat = "SELECT *FROM RETREAT";
-        private const string addgoods = "SELECT *FROM GOODS";
+        private const string addgoods = "SELECT *FROM ADDGOODS";
         private const string employee = "SELECT *FROM EMPLOYEE";
         private const string manufacturer = "SELECT *FROM MANUFACTURER";
         public static string Add_thisday => add_thisday;

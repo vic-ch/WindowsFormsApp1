@@ -180,7 +180,7 @@ namespace WindowsFormsApp1
                 //连接字符串
                 Join_str();
                 link2db.constr = l.conStrName;
-            Console.WriteLine(link2db.constr);
+            Console.WriteLine(link2db.constr+"登陆成功");
                 if (TestLink())
                 {
                     Login login = new Login();

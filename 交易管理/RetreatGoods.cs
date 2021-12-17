@@ -119,32 +119,35 @@ namespace WindowsFormsApp1
                 }
 
 
-                //检查是否有这个商品的信息（goods表）
+                //检查是否有这个商品的信息（goodsremain表）
                 try
                 {
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                     {
                         conn.Open();
-                        string sql = "SELECT 商品名,型号,生产厂商,数量 FROM GOODSREMAIN ";
+                        string sql = "SELECT 商品名,型号,生产厂商,数量 FROM GOODSREMAIN WHERE 商品名=@商品名 AND 型号=@型号  AND 生产厂商=@生产厂商  ";
                         using (SqlCommand cmd = new SqlCommand(sql, conn))
                         {
+                            cmd.Parameters.Add(new SqlParameter("@商品名",SqlDbType.NVarChar,20));
+                            cmd.Parameters.Add(new SqlParameter("@型号",SqlDbType.NVarChar,20));
+                            cmd.Parameters.Add(new SqlParameter("@生产厂商",SqlDbType.NVarChar,20));
+
+                            cmd.Parameters["@商品名"].Value = textBox2.Text;
+                            cmd.Parameters["@型号"].Value = textBox4.Text;
+                            cmd.Parameters["@生产厂商"].Value = comboBox1.Text;
+
                             using (SqlDataReader reader = cmd.ExecuteReader())
                             {
-                                bool flag_exists = false;
-
-                                while (reader.Read())
-                                {
-                                    if (reader.GetString(0) == textBox2.Text && reader.GetString(1) == textBox4.Text && reader.GetString(2) == comboBox1.Text)
-                                    {
-                                        flag_exists = true;
-                                    }
-                                }
-                                if (!flag_exists)
+                                if (!reader.Read())
                                 {
                                     MessageBox.Show("未查询到该商品！");
                                     return;
                                 }
-
+                                if (int.Parse(textBox6.Text) > reader.GetInt32(3))
+                                {
+                                    MessageBox.Show("该商品库存不足！");
+                                    return;
+                                }
                             }
                         }
                     }
@@ -160,8 +163,10 @@ namespace WindowsFormsApp1
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ToString()))
                     {
                         conn.Open();
-                        string sql = "INSERT INTO RETREAT (商品名,生产厂商,型号,单价,数量,退货年,退货月,退货日,业务员编号,总金额) " +
-                            "VALUES (@商品名,@生产厂商,@型号,@单价,@数量,@退货年,@退货月,@退货日,@业务员编号,@总金额)";
+                        string sql = "BEGIN TRANSACTION " +
+                            "INSERT INTO RETREAT (商品名,生产厂商,型号,单价,数量,退货年,退货月,退货日,业务员编号,总金额) VALUES (@商品名,@生产厂商,@型号,@单价,@数量,@退货年,@退货月,@退货日,@业务员编号,@总金额) " +
+                            "UPDATE GOODSREMAIN SET 数量=数量+@数量 WHERE 商品名=@商品名 AND 生产厂商=@生产厂商 AND 型号=@型号 " +
+                            "COMMIT ";
                         using (SqlCommand cmd = new SqlCommand(sql, conn))
                         {
 
@@ -177,7 +182,7 @@ namespace WindowsFormsApp1
                             cmd.Parameters.Add(new SqlParameter("@总金额", SqlDbType.Money));
 
                             cmd.Parameters["@商品名"].Value = textBox2.Text;
-                            cmd.Parameters["@生产厂商"].Value = comboBox1.SelectedItem;
+                            cmd.Parameters["@生产厂商"].Value = comboBox1.Text;
                             cmd.Parameters["@型号"].Value = textBox4.Text;
                             cmd.Parameters["@单价"].Value = textBox5.Text;
                             cmd.Parameters["@数量"].Value = textBox6.Text;

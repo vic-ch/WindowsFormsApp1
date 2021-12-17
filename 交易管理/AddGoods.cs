@@ -123,21 +123,13 @@ namespace WindowsFormsApp1
 
                 //由于数据库的这个表并不检查重复插入完全相同的商品，
                 //
-                try
-                {
+
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ToString()))
                     {
-                        string sql = "SELECT count(*) FROM GOODS WHERE " +
+                        string sql = "SELECT count(*) FROM GOODSREMAIN WHERE " +
                           "商品名=@商品名 AND " +
                           "生产厂商=生产厂商 AND " +
-                          "型号=@型号 AND " +
-                          "单价=@单价 AND " +
-                          "数量=@数量 AND " +
-                          "进货年=@进货年 AND " +
-                          "进货月=@进货月 AND " +
-                          "进货日=@进货日 AND " +
-                          "业务员编号=@业务员编号 AND " +
-                          "总金额=@总金额";
+                          "型号=@型号 ";
 
                         conn.Open();
 
@@ -146,69 +138,105 @@ namespace WindowsFormsApp1
                             cmd.Parameters.Add(new SqlParameter("@商品名",SqlDbType.NVarChar,20)) ;
                             cmd.Parameters.Add(new SqlParameter("@生产厂商",SqlDbType.NVarChar,20)) ;
                             cmd.Parameters.Add(new SqlParameter("@型号",SqlDbType.NVarChar,20)) ;
-                            cmd.Parameters.Add(new SqlParameter("@单价",SqlDbType.Money)) ;
-                            cmd.Parameters.Add(new SqlParameter("@数量",SqlDbType.Int)) ;
-                            cmd.Parameters.Add(new SqlParameter("@进货年", SqlDbType.SmallInt)) ;
-                            cmd.Parameters.Add(new SqlParameter("@进货月", SqlDbType.SmallInt)) ;
-                            cmd.Parameters.Add(new SqlParameter("@进货日",SqlDbType.SmallInt)) ;
-                            cmd.Parameters.Add(new SqlParameter("@业务员编号",SqlDbType.Int)) ;
-                            cmd.Parameters.Add(new SqlParameter("@总金额",SqlDbType.Money));
+                           
 
                             cmd.Parameters["@商品名"].Value=textBox2.Text;
-                            cmd.Parameters["@生产厂商"].Value = comboBox1.SelectedItem;
+                            cmd.Parameters["@生产厂商"].Value = comboBox1.Text;
                             cmd.Parameters["@型号"].Value = textBox4.Text;
-                            cmd.Parameters["@单价"].Value = textBox5.Text;
-                            cmd.Parameters["@数量"].Value = textBox6.Text;
-                            cmd.Parameters["@进货年"].Value = numericUpDown1.Value;
-                            cmd.Parameters["@进货月"].Value = numericUpDown2.Value;
-                            cmd.Parameters["@进货日"].Value = numericUpDown3.Value;
-                            cmd.Parameters["@业务员编号"].Value = textBox10.Text;
-                            cmd.Parameters["@总金额"].Value = textBox11.Text;
-
+                            
+                                
                             using (SqlDataReader reader = cmd.ExecuteReader())
                             {
                                 if (reader.Read())
                                 {
-                                    if (0 != reader.GetInt32(0))
+                                    if  (reader.GetInt32(0)!=0)
                                     {
-                                        MessageBox.Show("插入失败：库中已有该商品！");
+                                        sql = "BEGIN TRANSACTION " +
+                                            "INSERT INTO ADDGOODS (商品名,生产厂商,型号,单价,数量,进货年,进货月,进货日,业务员编号,总金额) VALUES (@商品名,@生产厂商,@型号,@单价,@数量,@进货年,@进货月,@进货日,@业务员编号,@总金额) " +
+                                            "UPDATE GOODSREMAIN SET 数量=数量+@数量 WHERE 商品名=@商品名 AND 生产厂商=@生产厂商 AND 型号=@型号 " +
+                                            "COMMIT ";
+                                        using (SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
+                                        {
+                                            try
+                                            {
+                                                conn2.Open();
+                                                using (SqlCommand cmd2 = new SqlCommand(sql, conn2))
+                                                {
+                                                    cmd.Parameters.Add(new SqlParameter("@商品名", SqlDbType.NVarChar, 20));
+                                                    cmd.Parameters.Add(new SqlParameter("@生产厂商", SqlDbType.NVarChar, 20));
+                                                    cmd.Parameters.Add(new SqlParameter("@型号", SqlDbType.NVarChar, 20));
+                                                    cmd.Parameters.Add(new SqlParameter("@单价", SqlDbType.Money));
+                                                    cmd.Parameters.Add(new SqlParameter("@数量", SqlDbType.Int));
+                                                    cmd.Parameters.Add(new SqlParameter("@进货年", SqlDbType.SmallInt));
+                                                    cmd.Parameters.Add(new SqlParameter("@进货月", SqlDbType.SmallInt));
+                                                    cmd.Parameters.Add(new SqlParameter("@进货日", SqlDbType.SmallInt));
+                                                    cmd.Parameters.Add(new SqlParameter("@业务员编号", SqlDbType.Int));
+                                                    cmd.Parameters.Add(new SqlParameter("@总金额", SqlDbType.Money));
+
+                                                    cmd.Parameters["@商品名"].Value = textBox2.Text;
+                                                    cmd.Parameters["@生产厂商"].Value = comboBox1.Text;
+                                                    cmd.Parameters["@型号"].Value = textBox4.Text;
+                                                    cmd.Parameters["@单价"].Value = textBox5.Text;
+                                                    cmd.Parameters["@数量"].Value = textBox6.Text;
+                                                    cmd.Parameters["@进货年"].Value = numericUpDown1.Value;
+                                                    cmd.Parameters["@进货月"].Value = numericUpDown2.Value;
+                                                    cmd.Parameters["@进货日"].Value = numericUpDown3.Value;
+                                                    cmd.Parameters["@业务员编号"].Value = textBox10.Text;
+                                                    cmd.Parameters["@总金额"].Value = textBox11.Text;
+
+                                                    cmd2.ExecuteNonQuery();
+                                                    MessageBox.Show("添加成功！");
+                                                    this.Close();
+                                                    //一条数据插入成功后，弹出关闭窗口选项。
+                                                }
+                                            }catch(Exception exx)
+                                            {
+                                                MessageBox.Show(exx.Message+"ssss");
+                                            }
+
+                                        }
                                     }
                                     else
                                     {
-                                        sql = "INSERT INTO GOODS (商品名,生产厂商,型号,单价,数量,进货年,进货月,进货日,业务员编号,总金额) " +
-                                            "VALUES (@商品名,@生产厂商,@型号,@单价,@数量,@进货年,@进货月,@进货日,@业务员编号,@总金额)";
+                                        //goodsremain中没有这个商品
+
+                                        sql = "BEGIN TRANSACTION " +
+                                            "INSERT INTO ADDGOODS (商品名,生产厂商,型号,单价,数量,进货年,进货月,进货日,业务员编号,总金额) VALUES (@商品名,@生产厂商,@型号,@单价,@数量,@进货年,@进货月,@进货日,@业务员编号,@总金额) " +
+                                            "INSERT INTO GOODSREMAIN (商品名,生产厂商,型号,单价,数量) VALUES (@商品名,@生产厂商,@型号,@单价,@数量) " +
+                                            "COMMIT ";
                                         using (SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                                         {
                                             conn2.Open();
                                             using (SqlCommand cmd2 = new SqlCommand(sql, conn2))
                                             {
-                                                cmd.Parameters.Add(new SqlParameter("@商品名", SqlDbType.NVarChar, 20));
-                                                cmd.Parameters.Add(new SqlParameter("@生产厂商", SqlDbType.NVarChar, 20));
-                                                cmd.Parameters.Add(new SqlParameter("@型号", SqlDbType.NVarChar, 20));
-                                                cmd.Parameters.Add(new SqlParameter("@单价", SqlDbType.Money));
-                                                cmd.Parameters.Add(new SqlParameter("@数量", SqlDbType.Int));
-                                                cmd.Parameters.Add(new SqlParameter("@进货年", SqlDbType.SmallInt));
-                                                cmd.Parameters.Add(new SqlParameter("@进货月", SqlDbType.SmallInt));
-                                                cmd.Parameters.Add(new SqlParameter("@进货日", SqlDbType.SmallInt));
-                                                cmd.Parameters.Add(new SqlParameter("@业务员编号", SqlDbType.Int));
-                                                cmd.Parameters.Add(new SqlParameter("@总金额", SqlDbType.Money));
+                                                cmd2.Parameters.Add(new SqlParameter("@商品名", SqlDbType.NVarChar, 20));
+                                                cmd2.Parameters.Add(new SqlParameter("@生产厂商", SqlDbType.NVarChar, 20));
+                                                cmd2.Parameters.Add(new SqlParameter("@型号", SqlDbType.NVarChar, 20));
+                                                cmd2.Parameters.Add(new SqlParameter("@单价", SqlDbType.Money));
+                                                cmd2.Parameters.Add(new SqlParameter("@数量", SqlDbType.Int));
+                                                cmd2.Parameters.Add(new SqlParameter("@进货年", SqlDbType.SmallInt));
+                                                cmd2.Parameters.Add(new SqlParameter("@进货月", SqlDbType.SmallInt));
+                                                cmd2.Parameters.Add(new SqlParameter("@进货日", SqlDbType.SmallInt));
+                                                cmd2.Parameters.Add(new SqlParameter("@业务员编号", SqlDbType.Int));
+                                                cmd2.Parameters.Add(new SqlParameter("@总金额", SqlDbType.Money));
 
-                                                cmd.Parameters["@商品名"].Value = textBox2.Text;
-                                                cmd.Parameters["@生产厂商"].Value = comboBox1.SelectedItem;
-                                                cmd.Parameters["@型号"].Value = textBox4.Text;
-                                                cmd.Parameters["@单价"].Value = textBox5.Text;
-                                                cmd.Parameters["@数量"].Value = textBox6.Text;
-                                                cmd.Parameters["@进货年"].Value = numericUpDown1.Value;
-                                                cmd.Parameters["@进货月"].Value = numericUpDown2.Value;
-                                                cmd.Parameters["@进货日"].Value = numericUpDown3.Value;
-                                                cmd.Parameters["@业务员编号"].Value = textBox10.Text;
-                                                cmd.Parameters["@总金额"].Value = textBox11.Text;
+                                                cmd2.Parameters["@商品名"].Value = textBox2.Text;
+                                                cmd2.Parameters["@生产厂商"].Value = comboBox1.Text;
+                                                cmd2.Parameters["@型号"].Value = textBox4.Text;
+                                                cmd2.Parameters["@单价"].Value = textBox5.Text;
+                                                cmd2.Parameters["@数量"].Value = textBox6.Text;
+                                                cmd2.Parameters["@进货年"].Value = numericUpDown1.Value;
+                                                cmd2.Parameters["@进货月"].Value = numericUpDown2.Value;
+                                                cmd2.Parameters["@进货日"].Value = numericUpDown3.Value;
+                                                cmd2.Parameters["@业务员编号"].Value = textBox10.Text;
+                                                cmd2.Parameters["@总金额"].Value = textBox11.Text;
 
                                                 cmd2.ExecuteNonQuery();
                                                 MessageBox.Show("添加成功！");
                                                 this.Close();
                                                 //一条数据插入成功后，弹出关闭窗口选项。
                                             }
+
                                         }
                                     }
                                 }
@@ -218,12 +246,7 @@ namespace WindowsFormsApp1
 
                     }
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                   // throw ex;
-                }                
+               
             }
         }
 

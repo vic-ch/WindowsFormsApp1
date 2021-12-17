@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Login());
             //
-             link2db.constr = "default";
+             //link2db.constr = "default";
             //Application.Run(new Exec());
             //
             Application.Run(new Link2DB());
