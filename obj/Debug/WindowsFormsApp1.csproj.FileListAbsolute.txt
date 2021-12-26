@@ -1,7 +1,6 @@
 C:\Users\z\source\repos\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
 C:\Users\z\source\repos\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
 C:\Users\z\source\repos\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
-C:\Users\z\source\repos\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.业绩查看.Showsell.resources
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.RetreatGoods.resources
 C:\Users\z\source\repos\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.SellGoods.resources

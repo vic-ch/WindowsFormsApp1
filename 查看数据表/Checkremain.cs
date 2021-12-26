@@ -43,6 +43,7 @@ namespace WindowsFormsApp1.查看数据表
             {
                 MessageBox.Show(ex.Message);
             }
+          
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -133,5 +134,7 @@ namespace WindowsFormsApp1.查看数据表
             }
 
         }
+
+
     }
 }

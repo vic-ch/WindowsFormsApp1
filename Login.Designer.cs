@@ -34,6 +34,7 @@
             this.txb_password = new System.Windows.Forms.TextBox();
             this.btn_login = new System.Windows.Forms.Button();
             this.btn_exit = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -91,6 +92,16 @@
             this.btn_exit.UseVisualStyleBackColor = true;
             this.btn_exit.Click += new System.EventHandler(this.btn_exit_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("华光细圆_CNKI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(59, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(176, 31);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "销售管理系统";
+            // 
             // Login
             // 
             this.AcceptButton = this.btn_login;
@@ -98,6 +109,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btn_exit;
             this.ClientSize = new System.Drawing.Size(284, 186);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btn_exit);
             this.Controls.Add(this.btn_login);
             this.Controls.Add(this.txb_password);
@@ -122,6 +134,7 @@
         private System.Windows.Forms.TextBox txb_password;
         private System.Windows.Forms.Button btn_login;
         private System.Windows.Forms.Button btn_exit;
+        private System.Windows.Forms.Label label3;
     }
 }
 

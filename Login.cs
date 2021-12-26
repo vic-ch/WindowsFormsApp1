@@ -15,13 +15,18 @@ namespace WindowsFormsApp1
  
     public partial class Login : Form
     {
-             
-
-
+            
         public Login()
         {
             InitializeComponent();
         }
+
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+        //重载窗口关闭事件。
 
         private void btn_login_Click(object sender, EventArgs e)
         {
@@ -31,7 +36,8 @@ namespace WindowsFormsApp1
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                 {
                     conn.Open();
-                    string sql = "select 用户名,密码 from userdb where 用户名=@name and 密码=@pwd";//获取textBox中的字符串并组成查询语句
+                    string sql = "select 用户名,密码 from userdb where 用户名=@name and 密码=@pwd";
+                    //获取textBox中的字符串并组成查询语句
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
@@ -82,8 +88,12 @@ namespace WindowsFormsApp1
 
         private void Login_Load(object sender, EventArgs e)
         {
+
+            //测试
             txb_password.Text = "yy";
             txb_username.Text = "yy";
         }
+
+
     }
 }

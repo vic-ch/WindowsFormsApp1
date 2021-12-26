@@ -43,13 +43,17 @@ namespace WindowsFormsApp1.业绩查看
             {
                 MessageBox.Show(ex.Message);
             }
+            
         }
 
         private void Form1_Resize(object sender, EventArgs e)
         {
             dataGridView1.Size = new Size(this.Size.Width - 60, dataGridView1.Size.Height);
-            groupBox1.Size=new Size(this.Size.Width-60,groupBox1.Size.Height);
+            groupBox1.Size = new Size(this.Size.Width - 60, groupBox1.Size.Height);
         }
+
+
+        private DataTable dt;
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -75,7 +79,7 @@ namespace WindowsFormsApp1.业绩查看
             if (textBox1.Text.Length > 10)
             {
                 MessageBox.Show("输入过长！请重新输入");
-                textBox1.Text= "";
+                textBox1.Text = "";
                 textBox1.Focus();
                 return;
             }
@@ -84,7 +88,8 @@ namespace WindowsFormsApp1.业绩查看
             {
                 if (textBox1.Text.Length > 0)
                 {
-                    DataTable dt = new DataTable();
+                    //DataTable dt = new DataTable();
+                    dt = new DataTable();
                     dt = ds.Tables["员工销售额"].Clone();
                     DataRow[] dataRow = ds.Tables["员工销售额"].Select("业务员编号=" + int.Parse(textBox1.Text) + "");
                     foreach (DataRow row in dataRow)
@@ -100,7 +105,7 @@ namespace WindowsFormsApp1.业绩查看
                 MessageBox.Show(ex.Message);
             }
 
-            if (dataGridView1.Rows.Count ==1)
+            if (dataGridView1.Rows.Count == 1)
             {
                 MessageBox.Show("该员工不存在！");
             }
@@ -108,31 +113,35 @@ namespace WindowsFormsApp1.业绩查看
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //按下显示全部按钮，将datagridview
             dataGridView1.DataSource = ds.Tables["员工销售额"];
-
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
-            dataGridView1.DataSource=null;
+            //按下取消按钮，将datagridview置空
+            dataGridView1.DataSource = null;
         }
+
 
 
 
         private void textBox1_KeyDow(object sender, KeyEventArgs e)
         {
+            //在文本框中键入Enter,相当于点击"查询"
+            //按回车键响应查询
+            //按Escape清空
+
             if (e.KeyCode == Keys.Enter)
             {
                 button3_Click(sender, e);
             }
-            if(e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
                 textBox1.Text = "";
             }
 
         }
-        //按回车键响应查询
-        //按Escape清空
     }
+
 }
