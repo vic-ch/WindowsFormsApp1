@@ -10,7 +10,12 @@
       "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
       "DisplayName": "杂项文件",
       "ColorIndex": -1
+    },
+    "5be6c2c8-fb4d-43a0-8106-79055609983b": {
+      "ProjectGuid": "5be6c2c8-fb4d-43a0-8106-79055609983b",
+      "DisplayName": "WpfApp1",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }

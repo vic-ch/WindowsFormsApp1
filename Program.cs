@@ -39,7 +39,7 @@ namespace WindowsFormsApp1
             //Application.Run(new Checkemployee());
             //Application.Run(new Checkmanufacturer());
 
-            Console.WriteLine("Hello,World!");
+            //Console.WriteLine("Hello,World!");
 
 
         }

@@ -10,6 +10,9 @@ using System.Configuration;
 
 namespace WindowsFormsApp1
 {
+
+
+    //当前用户
     public static class CurrentUser
     {
         public static string name { set; get; }
