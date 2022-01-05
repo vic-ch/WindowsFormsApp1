@@ -41,9 +41,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(24, 28);
+            this.button1.Location = new System.Drawing.Point(32, 35);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(152, 48);
+            this.button1.Size = new System.Drawing.Size(203, 60);
             this.button1.TabIndex = 0;
             this.button1.Text = "显示全部员工销售额";
             this.button1.UseVisualStyleBackColor = true;
@@ -54,18 +55,21 @@
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(24, 97);
+            this.groupBox1.Location = new System.Drawing.Point(32, 121);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(940, 144);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(1253, 180);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "按员工号查询";
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(526, 40);
+            this.button3.Location = new System.Drawing.Point(701, 50);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(152, 48);
+            this.button3.Size = new System.Drawing.Size(203, 60);
             this.button3.TabIndex = 1;
             this.button3.Text = "查询";
             this.button3.UseVisualStyleBackColor = true;
@@ -74,36 +78,42 @@
             // textBox1
             // 
             this.textBox1.AcceptsReturn = true;
-            this.textBox1.Location = new System.Drawing.Point(272, 55);
-            this.textBox1.MaximumSize = new System.Drawing.Size(300, 300);
+            this.textBox1.Location = new System.Drawing.Point(363, 69);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.MaximumSize = new System.Drawing.Size(399, 300);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(129, 21);
+            this.textBox1.Size = new System.Drawing.Size(171, 25);
             this.textBox1.TabIndex = 0;
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDow);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(174, 58);
+            this.label1.Location = new System.Drawing.Point(232, 72);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.Size = new System.Drawing.Size(67, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "员工号：";
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(24, 258);
+            this.dataGridView1.Location = new System.Drawing.Point(32, 322);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(940, 500);
+            this.dataGridView1.Size = new System.Drawing.Size(1253, 625);
             this.dataGridView1.TabIndex = 2;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(550, 28);
+            this.button2.Location = new System.Drawing.Point(733, 35);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(152, 48);
+            this.button2.Size = new System.Drawing.Size(203, 60);
             this.button2.TabIndex = 1;
             this.button2.Text = "取消";
             this.button2.UseVisualStyleBackColor = true;
@@ -111,13 +121,14 @@
             // 
             // Showsell
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 811);
+            this.ClientSize = new System.Drawing.Size(1312, 1014);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Showsell";
             this.Text = "查询员工销售额";
             this.Load += new System.EventHandler(this.Form1_Load);

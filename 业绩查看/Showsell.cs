@@ -34,7 +34,6 @@ namespace WindowsFormsApp1.业绩查看
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             int count = adapter.Fill(ds, "员工销售额");
-
                         }
                     }
                 }
@@ -98,6 +97,8 @@ namespace WindowsFormsApp1.业绩查看
                     };
 
                     dataGridView1.DataSource = dt;
+                    dataGridView1.Columns["销售总金额"].DefaultCellStyle.Format = "F2";
+
                 }
             }
             catch (System.Exception ex)
@@ -115,6 +116,8 @@ namespace WindowsFormsApp1.业绩查看
         {
             //按下显示全部按钮，将datagridview
             dataGridView1.DataSource = ds.Tables["员工销售额"];
+            dataGridView1.Columns["销售总金额"].DefaultCellStyle.Format = "F2";
+
         }
 
         private void button2_Click(object sender, EventArgs e)

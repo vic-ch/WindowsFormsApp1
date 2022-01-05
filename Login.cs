@@ -56,7 +56,7 @@ namespace WindowsFormsApp1
                             if (reader.Read())      //如果有返回行，表示在表中查到这个账号并且密码正确
                             {
                                 CurrentUser.name = reader.GetString(0);
-                                Console.WriteLine(CurrentUser.name);
+                                //Console.WriteLine(CurrentUser.name);
                                 CurrentUser.status = 1;
 
                                 //进入exec界面

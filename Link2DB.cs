@@ -162,32 +162,32 @@ namespace WindowsFormsApp1
 
         private void button_Sign_in_Click(object sender, EventArgs e)
         {
-            //if (checkBox1.Checked)
-            //{
-            //    //选中了"使用默认链接"
-            //    //则使用默认字符串
-            //    link2db.constr = "default";
-            //    if (TestLink())
-            //    {
-            //        Login login = new Login();
-            //        this.Hide();
-            //        login.Show();
-            //    }
-            //}
-            //else
-            //{
-                //自定义方式连接
-                //连接字符串
-                Join_str();
-                link2db.constr = l.conStrName;
-            Console.WriteLine(link2db.constr+"登陆成功");
+            if (checkBox1.Checked)
+            {
+                //选中了"使用默认链接"
+                //则使用默认字符串
+                link2db.constr = "default";
                 if (TestLink())
                 {
                     Login login = new Login();
                     this.Hide();
                     login.Show();
                 }
-            //}
+            }
+            else
+            {
+                //自定义方式连接
+                //连接字符串
+                Join_str();
+                link2db.constr = l.conStrName;
+            //Console.WriteLine(link2db.constr+"登陆成功");
+                if (TestLink())
+                {
+                    Login login = new Login();
+                    this.Hide();
+                    login.Show();
+                }
+            }
             
         }
 

@@ -26,7 +26,7 @@ namespace WindowsFormsApp1.进货统计
         private void Buycount_Load(object sender, EventArgs e)
         {
            
-            Console.WriteLine(Views.Add_thisday);
+            //Console.WriteLine(Views.Add_thisday);
             showtag1();
             showtag2();
             showtag3();
@@ -81,8 +81,10 @@ namespace WindowsFormsApp1.进货统计
             {
                 MessageBox.Show("in tag 1 :" + ex.Message);
             }
-
-            }
+            dataGridView1.Columns["单价"].DefaultCellStyle.Format = "F2";
+            dataGridView1.Columns["总金额"].DefaultCellStyle.Format = "F2";
+            dataGridView2.Columns["总金额"].DefaultCellStyle.Format = "F2";
+        }
         private void showtag2()
         {
             try
@@ -96,6 +98,7 @@ namespace WindowsFormsApp1.进货统计
                         {
                             int count = adapter.Fill(ds, "进货统计2");
                             dataGridView4.DataSource = ds.Tables["进货统计2"];
+                            
                         }
                     }
                 }
@@ -116,6 +119,8 @@ namespace WindowsFormsApp1.进货统计
                         {
                             int count = adapter.Fill(ds, "进货统计汇总2");
                             dataGridView3.DataSource = ds.Tables["进货统计汇总2"];
+
+
                             int c = 0;
                             while (1 + count != 0)
                             {
@@ -132,6 +137,9 @@ namespace WindowsFormsApp1.进货统计
                 MessageBox.Show("in tag 2 :" + ex.Message);
             }
 
+            dataGridView4.Columns["单价"].DefaultCellStyle.Format = "F2";
+            dataGridView4.Columns["总金额"].DefaultCellStyle.Format = "F2";
+            dataGridView3.Columns["总金额"].DefaultCellStyle.Format = "F2";
 
         }
         private void showtag3()
@@ -171,7 +179,7 @@ namespace WindowsFormsApp1.进货统计
                             while (1 + count != 0)
                             {
                                 c += Convert.ToInt32(dataGridView5.Rows[count].Cells[1].Value);
-                                textBox3.Text = c.ToString("f2");
+                                textBox3.Text = c.ToString("F2");
                                 count--;
                             }
                         }
@@ -183,7 +191,9 @@ namespace WindowsFormsApp1.进货统计
                 MessageBox.Show("in tag 3 :" + ex.Message);
             }
 
-
+            dataGridView6.Columns["单价"].DefaultCellStyle.Format = "F2";
+            dataGridView6.Columns["总金额"].DefaultCellStyle.Format = "F2";
+            dataGridView5.Columns["总金额"].DefaultCellStyle.Format = "F2";
         }
         private void showtag4()
         {
@@ -233,7 +243,9 @@ namespace WindowsFormsApp1.进货统计
             {
                 MessageBox.Show("in tag 4 :" + ex.Message);
             }
-
+            dataGridView8.Columns["单价"].DefaultCellStyle.Format = "F2";
+            dataGridView8.Columns["总金额"].DefaultCellStyle.Format = "F2";
+            dataGridView7.Columns["总金额"].DefaultCellStyle.Format = "F2";
         }
         private void Buycount_Resize(object sender, EventArgs e)
         {

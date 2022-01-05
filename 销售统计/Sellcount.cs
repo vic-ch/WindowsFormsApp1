@@ -79,7 +79,9 @@ namespace WindowsFormsApp1.销售统计
             {
                 MessageBox.Show("in tag 1 :" + ex.Message);
             }
-
+            dataGridView1.Columns["单价"].DefaultCellStyle.Format = "F2";
+            dataGridView1.Columns["总金额"].DefaultCellStyle.Format = "F2";
+            dataGridView2.Columns["总金额"].DefaultCellStyle.Format = "F2";
         }
         private void showtag2()
         {
@@ -130,7 +132,9 @@ namespace WindowsFormsApp1.销售统计
                 MessageBox.Show("in tag 2 :" + ex.Message);
             }
 
-
+            dataGridView4.Columns["单价"].DefaultCellStyle.Format = "F2";
+            dataGridView4.Columns["总金额"].DefaultCellStyle.Format = "F2";
+            dataGridView3.Columns["总金额"].DefaultCellStyle.Format = "F2";
         }
         private void showtag3()
         {
@@ -180,7 +184,9 @@ namespace WindowsFormsApp1.销售统计
             {
                 MessageBox.Show("in tag 3 :" + ex.Message);
             }
-
+            dataGridView6.Columns["单价"].DefaultCellStyle.Format = "F2";
+            dataGridView6.Columns["总金额"].DefaultCellStyle.Format = "F2";
+            dataGridView5.Columns["总金额"].DefaultCellStyle.Format = "F2";
 
         }
         private void showtag4()
@@ -231,6 +237,9 @@ namespace WindowsFormsApp1.销售统计
             {
                 MessageBox.Show("in tag 4 :" + ex.Message);
             }
+            dataGridView8.Columns["单价"].DefaultCellStyle.Format = "F2";
+            dataGridView8.Columns["总金额"].DefaultCellStyle.Format = "F2";
+            dataGridView7.Columns["总金额"].DefaultCellStyle.Format = "F2";
 
         }
 
@@ -255,6 +264,7 @@ namespace WindowsFormsApp1.销售统计
             tabPage3.Size = new Size(this.Size.Width -60,tabPage3.Size.Height);
             tabPage4.Size = new Size(this.Size.Width -60,tabPage4.Size.Height);
         }
+
 
     }
 }

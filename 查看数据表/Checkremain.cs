@@ -11,7 +11,6 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 
-
 namespace WindowsFormsApp1.查看数据表
 {
     public partial class Checkremain : Form
@@ -83,6 +82,7 @@ namespace WindowsFormsApp1.查看数据表
                     };
 
                     dataGridView1.DataSource = dt;
+                    dataGridView1.Columns["单价"].DefaultCellStyle.Format = "F2";
                 }
             }
             catch (System.Exception ex)
@@ -99,6 +99,7 @@ namespace WindowsFormsApp1.查看数据表
         private void button1_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = ds.Tables["现存货物"];
+            dataGridView1.Columns["单价"].DefaultCellStyle.Format = "F2";
 
         }
 
