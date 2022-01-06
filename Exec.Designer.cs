@@ -94,8 +94,9 @@
             this.button3_销售统计.Name = "button3_销售统计";
             this.button3_销售统计.Size = new System.Drawing.Size(250, 220);
             this.button3_销售统计.TabIndex = 2;
-            this.button3_销售统计.Text = "销售管理";
+            this.button3_销售统计.Text = "销售统计";
             this.button3_销售统计.UseVisualStyleBackColor = true;
+            this.button3_销售统计.UseWaitCursor = true;
             this.button3_销售统计.Click += new System.EventHandler(this.button3_销售管理_Click);
             // 
             // button4_业绩查看
@@ -287,14 +288,14 @@
             // 修改密码ToolStripMenuItem
             // 
             this.修改密码ToolStripMenuItem.Name = "修改密码ToolStripMenuItem";
-            this.修改密码ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.修改密码ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.修改密码ToolStripMenuItem.Text = "修改密码";
             this.修改密码ToolStripMenuItem.Click += new System.EventHandler(this.修改密码ToolStripMenuItem_Click);
             // 
             // 添加成员ToolStripMenuItem
             // 
             this.添加成员ToolStripMenuItem.Name = "添加成员ToolStripMenuItem";
-            this.添加成员ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.添加成员ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.添加成员ToolStripMenuItem.Text = "添加成员";
             this.添加成员ToolStripMenuItem.Click += new System.EventHandler(this.添加成员ToolStripMenuItem_Click);
             // 
@@ -312,28 +313,28 @@
             // 进货登记ToolStripMenuItem
             // 
             this.进货登记ToolStripMenuItem.Name = "进货登记ToolStripMenuItem";
-            this.进货登记ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.进货登记ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.进货登记ToolStripMenuItem.Text = "进货登记";
             this.进货登记ToolStripMenuItem.Click += new System.EventHandler(this.进货登记ToolStripMenuItem_Click);
             // 
             // 销售登记ToolStripMenuItem
             // 
             this.销售登记ToolStripMenuItem.Name = "销售登记ToolStripMenuItem";
-            this.销售登记ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.销售登记ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.销售登记ToolStripMenuItem.Text = "销售登记";
             this.销售登记ToolStripMenuItem.Click += new System.EventHandler(this.销售登记ToolStripMenuItem_Click);
             // 
             // 退货登记ToolStripMenuItem
             // 
             this.退货登记ToolStripMenuItem.Name = "退货登记ToolStripMenuItem";
-            this.退货登记ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.退货登记ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.退货登记ToolStripMenuItem.Text = "退货登记";
             this.退货登记ToolStripMenuItem.Click += new System.EventHandler(this.退货登记ToolStripMenuItem_Click);
             // 
             // 进货厂商登记ToolStripMenuItem
             // 
             this.进货厂商登记ToolStripMenuItem.Name = "进货厂商登记ToolStripMenuItem";
-            this.进货厂商登记ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.进货厂商登记ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.进货厂商登记ToolStripMenuItem.Text = "进货厂商登记";
             this.进货厂商登记ToolStripMenuItem.Click += new System.EventHandler(this.进货厂商登记ToolStripMenuItem_Click);
             // 
@@ -353,42 +354,42 @@
             // 现存货物ToolStripMenuItem
             // 
             this.现存货物ToolStripMenuItem.Name = "现存货物ToolStripMenuItem";
-            this.现存货物ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.现存货物ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.现存货物ToolStripMenuItem.Text = "现存货物";
             this.现存货物ToolStripMenuItem.Click += new System.EventHandler(this.现存货物ToolStripMenuItem_Click);
             // 
             // 已售货物ToolStripMenuItem
             // 
             this.已售货物ToolStripMenuItem.Name = "已售货物ToolStripMenuItem";
-            this.已售货物ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.已售货物ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.已售货物ToolStripMenuItem.Text = "已售货物";
             this.已售货物ToolStripMenuItem.Click += new System.EventHandler(this.已售货物ToolStripMenuItem_Click);
             // 
             // 进货货物ToolStripMenuItem
             // 
             this.进货货物ToolStripMenuItem.Name = "进货货物ToolStripMenuItem";
-            this.进货货物ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.进货货物ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.进货货物ToolStripMenuItem.Text = "进货货物";
             this.进货货物ToolStripMenuItem.Click += new System.EventHandler(this.进货货物ToolStripMenuItem_Click);
             // 
             // 退货货物ToolStripMenuItem
             // 
             this.退货货物ToolStripMenuItem.Name = "退货货物ToolStripMenuItem";
-            this.退货货物ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.退货货物ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.退货货物ToolStripMenuItem.Text = "退货货物";
             this.退货货物ToolStripMenuItem.Click += new System.EventHandler(this.退货货物ToolStripMenuItem_Click);
             // 
             // 员工信息ToolStripMenuItem
             // 
             this.员工信息ToolStripMenuItem.Name = "员工信息ToolStripMenuItem";
-            this.员工信息ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.员工信息ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.员工信息ToolStripMenuItem.Text = "员工信息";
             this.员工信息ToolStripMenuItem.Click += new System.EventHandler(this.员工信息ToolStripMenuItem_Click);
             // 
             // 进货商信息ToolStripMenuItem
             // 
             this.进货商信息ToolStripMenuItem.Name = "进货商信息ToolStripMenuItem";
-            this.进货商信息ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.进货商信息ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.进货商信息ToolStripMenuItem.Text = "进货商信息";
             this.进货商信息ToolStripMenuItem.Click += new System.EventHandler(this.进货商信息ToolStripMenuItem_Click);
             // 
@@ -440,7 +441,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(820, 538);
             this.Name = "Exec";
-            this.Text = "exec";
+            this.Text = "销售管理系统";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

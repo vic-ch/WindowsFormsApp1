@@ -36,6 +36,8 @@ namespace WindowsFormsApp1
         private const string query_employeesell = "SELECT * FROM QUERY_EMPLOYEESELL";
         private const string goodsreamin = "SELECT * FROM GOODSREMAIN";
 
+
+        
         private const string sell = "SELECT *FROM SELL";
         private const string retreat = "SELECT *FROM RETREAT";
         private const string addgoods = "SELECT *FROM ADDGOODS";

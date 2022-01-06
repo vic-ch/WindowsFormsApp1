@@ -252,7 +252,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="README.md" />
+    <None Include="交易管理\README.md" />
     <None Include="数据库与信息系统基础课程设计.lnk" />
+    <None Include="系统管理\README.md" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -271,6 +273,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 
-namespace WindowsFormsApp1
+namespace WindowsFormsApp1.交易管理
 {
     public partial class AddGoods : Form
     {
@@ -162,27 +162,27 @@ namespace WindowsFormsApp1
                                                 conn2.Open();
                                                 using (SqlCommand cmd2 = new SqlCommand(sql, conn2))
                                                 {
-                                                    cmd.Parameters.Add(new SqlParameter("@商品名", SqlDbType.NVarChar, 20));
-                                                    cmd.Parameters.Add(new SqlParameter("@生产厂商", SqlDbType.NVarChar, 20));
-                                                    cmd.Parameters.Add(new SqlParameter("@型号", SqlDbType.NVarChar, 20));
-                                                    cmd.Parameters.Add(new SqlParameter("@单价", SqlDbType.Money));
-                                                    cmd.Parameters.Add(new SqlParameter("@数量", SqlDbType.Int));
-                                                    cmd.Parameters.Add(new SqlParameter("@进货年", SqlDbType.SmallInt));
-                                                    cmd.Parameters.Add(new SqlParameter("@进货月", SqlDbType.SmallInt));
-                                                    cmd.Parameters.Add(new SqlParameter("@进货日", SqlDbType.SmallInt));
-                                                    cmd.Parameters.Add(new SqlParameter("@业务员编号", SqlDbType.Int));
-                                                    cmd.Parameters.Add(new SqlParameter("@总金额", SqlDbType.Money));
+                                                    cmd2.Parameters.Add(new SqlParameter("@商品名", SqlDbType.NVarChar, 20));
+                                                    cmd2.Parameters.Add(new SqlParameter("@生产厂商", SqlDbType.NVarChar, 20));
+                                                    cmd2.Parameters.Add(new SqlParameter("@型号", SqlDbType.NVarChar, 20));
+                                                    cmd2.Parameters.Add(new SqlParameter("@单价", SqlDbType.Money));
+                                                    cmd2.Parameters.Add(new SqlParameter("@数量", SqlDbType.Int));
+                                                    cmd2.Parameters.Add(new SqlParameter("@进货年", SqlDbType.SmallInt));
+                                                    cmd2.Parameters.Add(new SqlParameter("@进货月", SqlDbType.SmallInt));
+                                                    cmd2.Parameters.Add(new SqlParameter("@进货日", SqlDbType.SmallInt));
+                                                    cmd2.Parameters.Add(new SqlParameter("@业务员编号", SqlDbType.Int));
+                                                    cmd2.Parameters.Add(new SqlParameter("@总金额", SqlDbType.Money));
 
-                                                    cmd.Parameters["@商品名"].Value = textBox2.Text;
-                                                    cmd.Parameters["@生产厂商"].Value = comboBox1.Text;
-                                                    cmd.Parameters["@型号"].Value = textBox4.Text;
-                                                    cmd.Parameters["@单价"].Value = textBox5.Text;
-                                                    cmd.Parameters["@数量"].Value = textBox6.Text;
-                                                    cmd.Parameters["@进货年"].Value = numericUpDown1.Value;
-                                                    cmd.Parameters["@进货月"].Value = numericUpDown2.Value;
-                                                    cmd.Parameters["@进货日"].Value = numericUpDown3.Value;
-                                                    cmd.Parameters["@业务员编号"].Value = textBox10.Text;
-                                                    cmd.Parameters["@总金额"].Value = textBox11.Text;
+                                                    cmd2.Parameters["@商品名"].Value = textBox2.Text;
+                                                    cmd2.Parameters["@生产厂商"].Value = comboBox1.Text;
+                                                    cmd2.Parameters["@型号"].Value = textBox4.Text;
+                                                    cmd2.Parameters["@单价"].Value = textBox5.Text;
+                                                    cmd2.Parameters["@数量"].Value = textBox6.Text;
+                                                    cmd2.Parameters["@进货年"].Value = numericUpDown1.Value;
+                                                    cmd2.Parameters["@进货月"].Value = numericUpDown2.Value;
+                                                    cmd2.Parameters["@进货日"].Value = numericUpDown3.Value;
+                                                    cmd2.Parameters["@业务员编号"].Value = textBox10.Text;
+                                                    cmd2.Parameters["@总金额"].Value = textBox11.Text;
 
                                                     cmd2.ExecuteNonQuery();
                                                     MessageBox.Show("添加成功！");
@@ -202,7 +202,7 @@ namespace WindowsFormsApp1
 
                                         sql = "BEGIN TRANSACTION " +
                                             "INSERT INTO ADDGOODS (商品名,生产厂商,型号,单价,数量,进货年,进货月,进货日,业务员编号,总金额) VALUES (@商品名,@生产厂商,@型号,@单价,@数量,@进货年,@进货月,@进货日,@业务员编号,@总金额) " +
-                                            "INSERT INTO GOODSREMAIN (商品名,生产厂商,型号,单价,数量) VALUES (@商品名,@生产厂商,@型号,@单价,@数量) " +
+                                            "INSERT INTO GOODSREMAIN (商品名,生产厂商,型号,数量) VALUES (@商品名,@生产厂商,@型号,@数量) " +
                                             "COMMIT ";
                                         using (SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings[link2db.constr].ConnectionString))
                                         {
@@ -324,6 +324,10 @@ namespace WindowsFormsApp1
             textBox2.Focus();
         }
 
+
+
+
+        //添加厂商
         private void button3_Click(object sender, EventArgs e)
         {
             if (textBox12.Text.Length == 0 || textBox13.Text.Length == 0 ||  textBox14.Text.Length == 0 || textBox15.Text.Length == 0 )

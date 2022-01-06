@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 
-namespace WindowsFormsApp1
+namespace WindowsFormsApp1.交易管理
 {
     public partial class SellGoods : Form
     {

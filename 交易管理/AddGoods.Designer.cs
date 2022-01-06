@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp1
+﻿namespace WindowsFormsApp1.交易管理
 {
     partial class AddGoods
     {

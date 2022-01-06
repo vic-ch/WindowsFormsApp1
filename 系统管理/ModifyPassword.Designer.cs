@@ -146,7 +146,7 @@
             this.DoubleBuffered = true;
             this.Name = "ModifyPassword";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ModifyPassword";
+            this.Text = "修改密码";
             this.Load += new System.EventHandler(this.ModifyPassword_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

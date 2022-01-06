@@ -84,7 +84,7 @@
             this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(952, 761);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "今日进货";
@@ -138,7 +138,7 @@
             this.tabPage2.Controls.Add(this.dataGridView4);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(952, 761);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "本月进货";
@@ -298,7 +298,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "Buycount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Buycount";
+            this.Text = "进货统计";
             this.Load += new System.EventHandler(this.Buycount_Load);
             this.Resize += new System.EventHandler(this.Buycount_Resize);
             this.tabControl1.ResumeLayout(false);

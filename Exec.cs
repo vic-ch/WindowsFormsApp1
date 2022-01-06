@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.交易管理;
 using WindowsFormsApp1.进货统计;
 using WindowsFormsApp1.销售统计;
 using WindowsFormsApp1.系统管理;

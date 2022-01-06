@@ -209,7 +209,7 @@
             this.ClientSize = new System.Drawing.Size(484, 450);
             this.Controls.Add(this.groupBox1);
             this.Name = "Link2DB";
-            this.Text = "Link2DB";
+            this.Text = "链接数据库";
             this.Load += new System.EventHandler(this.Link2DB_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

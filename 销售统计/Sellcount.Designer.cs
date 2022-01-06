@@ -292,7 +292,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "Sellcount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Selllcount";
+            this.Text = "销售统计";
             this.Load += new System.EventHandler(this.Buycount_Load);
             this.Resize += new System.EventHandler(this.Buycount_Resize);
             this.tabControl1.ResumeLayout(false);

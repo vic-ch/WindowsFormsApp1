@@ -4,9 +4,6 @@ D:\studio\repos\WindowsFormsApp1\bin\Release\WindowsFormsApp1.pdb
 D:\studio\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.AssemblyReference.cache
 D:\studio\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.SuggestedBindingRedirects.cache
 D:\studio\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.业绩查看.Showsell.resources
-D:\studio\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.RetreatGoods.resources
-D:\studio\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.SellGoods.resources
-D:\studio\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.AddGoods.resources
 D:\studio\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.查看数据表.Checkmanufacturer.resources
 D:\studio\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.查看数据表.Checkemployee.resources
 D:\studio\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.查看数据表.Checkaddgoods.resources
@@ -25,3 +22,6 @@ D:\studio\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.GenerateRes
 D:\studio\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.CoreCompileInputs.cache
 D:\studio\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.exe
 D:\studio\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.pdb
+D:\studio\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.交易管理.RetreatGoods.resources
+D:\studio\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.交易管理.SellGoods.resources
+D:\studio\repos\WindowsFormsApp1\obj\Release\WindowsFormsApp1.交易管理.AddGoods.resources

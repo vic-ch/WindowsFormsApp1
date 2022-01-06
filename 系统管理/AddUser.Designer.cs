@@ -106,7 +106,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 12);
             this.label3.TabIndex = 2;
-            this.label3.Text = "设置密码：";
+            this.label3.Text = "确认密码：";
             // 
             // AddUser
             // 
@@ -123,7 +123,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AddUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AddUser";
+            this.Text = "添加管理员";
             this.ResumeLayout(false);
             this.PerformLayout();
 
