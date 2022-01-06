@@ -402,3 +402,5 @@ FodyWeavers.xsd
 
 #debug
 *.pdb
+
+/obj/
